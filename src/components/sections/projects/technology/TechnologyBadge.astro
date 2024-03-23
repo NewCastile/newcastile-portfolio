@@ -2,6 +2,20 @@
 import { Image } from "astro:assets";
 import Badge from "../../../shared/Badge.astro";
 
+interface Technology {
+    name: string;
+    icon: {
+        src: ImageMetadata;
+        size: number;
+        background?: boolean;
+        backgroundColor?: string;
+    };
+}
+
+type Props = {
+    technology: Technology;
+};
+
 const { technology } = Astro.props;
 
 const {

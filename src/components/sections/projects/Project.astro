@@ -4,19 +4,21 @@ import ExternalLink from "../../icons/ExternalLink.astro";
 import TechnologyBadge from "./technology/TechnologyBadge.astro";
 import ProjectLinks from "./ProjectLinks.astro";
 
+interface Technology {
+    name: string;
+    icon: {
+        src: ImageMetadata;
+        size: number;
+        background?: boolean;
+        backgroundColor?: string;
+    };
+}
+
 interface Project {
     name: string;
     description: string;
     image: ImageMetadata;
-    technologies: Array<{
-        name: string;
-        icon: {
-            src: ImageMetadata;
-            size: number;
-            background?: boolean;
-            backgroundColor?: string;
-        };
-    }>;
+    technologies: Array<Technology>;
     repo: string;
     web?: string;
 }
