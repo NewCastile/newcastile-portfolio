@@ -5,15 +5,17 @@ import LinkIcon from "../../icons/Link.astro";
 const { repo, web } = Astro.props;
 ---
 
-<div class="flex flex-col items-start justify-center gap-2 sm-mobile:flex-row">
+<div
+    class={"flex flex-col items-start justify-center gap-2 sm-mobile:flex-row"}
+>
     <Link href={repo}>
-        <GithubIcon class="w-7 h-7" name="icon" />
+        <GithubIcon class={"size-7"} name={"icon"} />
         Código
     </Link>
     {
         web ? (
             <Link href={web}>
-                <LinkIcon class="w-7 h-7" name="icon" />
+                <LinkIcon class={"size-7"} name={"icon"} />
                 Web
             </Link>
         ) : null

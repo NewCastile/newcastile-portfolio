@@ -18,7 +18,7 @@ interface Project {
     name: string;
     description: string;
     image: ImageMetadata;
-    technologies: Array<Technology>;
+    technologies: Technology[];
     repo: string;
     web?: string;
 }
@@ -30,34 +30,37 @@ interface Props {
 const { project } = Astro.props;
 ---
 
-<article class="flex flex-col items-center justify-center gap-12 md:flex-row">
+<article class={"flex flex-col items-center justify-center gap-12 md:flex-row"}>
     <div
-        class="relative flex-col items-center justify-center hidden w-1/2 h-full group lg:flex rounded-xl"
+        class={"group relative hidden h-full w-1/2 flex-col items-center justify-center rounded-xl lg:flex"}
     >
         <div
-            class="absolute flex-col items-center justify-center hidden w-full h-full p-2 group-hover:flex group-hover:animate-fade-in group-hover:bg-slate-800/80 backdrop-blur rounded-xl"
+            class={"absolute hidden size-full flex-col items-center justify-center rounded-xl p-2 backdrop-blur group-hover:flex group-hover:animate-fade-in group-hover:bg-slate-800/80"}
         >
             <a
-                target="_blank"
                 href={`${project.web ? project.web : project.repo}`}
+                rel={"noreferrer"}
+                target={"_blank"}
             >
                 <ExternalLink
-                    class="stroke-2 size-16 stroke-white"
-                    name="icon"
+                    class={"size-16 stroke-white stroke-2"}
+                    name={"icon"}
                 />
             </a>
         </div>
         <Image
-            src={project.image}
             alt={"project-image"}
-            class="hidden w-full h-full lg:block rounded-xl"
+            class={"hidden size-full rounded-xl lg:block"}
+            src={project.image}
         />
     </div>
-    <div class="flex flex-col items-start justify-center w-full gap-4 lg:w-1/2">
-        <h4 class="w-full text-2xl text-center sm:w-max sm:text-left">
+    <div
+        class={"flex w-full flex-col items-start justify-center gap-4 lg:w-1/2"}
+    >
+        <h4 class={"w-full text-center text-2xl sm:w-max sm:text-left"}>
             {project.name}
         </h4>
-        <div class="flex-row flex-wrap hidden gap-4 sm-mobile:flex lg:hidden">
+        <div class={"hidden flex-row flex-wrap gap-4 sm-mobile:flex lg:hidden"}>
             {
                 project.technologies.map((technology) => {
                     return <TechnologyBadge technology={technology} />;
@@ -65,35 +68,36 @@ const { project } = Astro.props;
             }
         </div>
         <div
-            class="relative flex flex-col items-center justify-center w-full h-full group lg:hidden lg:w-1/2 rounded-xl"
+            class={"group relative flex size-full flex-col items-center justify-center rounded-xl lg:hidden lg:w-1/2"}
         >
             <div
-                class="absolute flex-col items-center justify-center hidden w-full h-full p-2 group-hover:flex group-hover:animate-fade-in group-hover:bg-slate-800/80 backdrop-blur rounded-xl"
+                class={"absolute hidden size-full flex-col items-center justify-center rounded-xl p-2 backdrop-blur group-hover:flex group-hover:animate-fade-in group-hover:bg-slate-800/80"}
             >
                 <a
-                    target="_blank"
                     href={`${project.web ? project.web : project.repo}`}
+                    rel={"noreferrer"}
+                    target={"_blank"}
                 >
                     <ExternalLink
-                        class="stroke-2 size-16 stroke-white"
-                        name="icon"
+                        class={"size-16 stroke-white stroke-2"}
+                        name={"icon"}
                     />
                 </a>
             </div>
             <Image
-                src={project.image}
                 alt={"project-image"}
-                class="block w-full h-full lg:hidden rounded-xl"
+                class={"block size-full rounded-xl lg:hidden"}
+                src={project.image}
             />
         </div>
-        <div class="flex-row flex-wrap hidden gap-4 lg:flex">
+        <div class={"hidden flex-row flex-wrap gap-4 lg:flex"}>
             {
                 project.technologies.map((technology) => {
                     return <TechnologyBadge technology={technology} />;
                 })
             }
         </div>
-        <p set:html={project.description} class="w-full" />
-        <ProjectLinks web={project.web} repo={project.repo} />
+        <p class={"w-full"} set:html={project.description} />
+        <ProjectLinks repo={project.repo} web={project.web} />
     </div>
 </article>

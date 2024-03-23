@@ -8,51 +8,53 @@ const LINKEDIN_PROFILE_LINK = "https://www.linkedin.com/in/cguanipa/";
 ---
 
 <footer
-    class="flex flex-col items-center justify-center w-full px-8 mx-auto text-xl font-bold py-14 lg:px-0 md:w-4/5 lg:w-3/4 desktop:w-1/2"
+    class={"mx-auto flex w-full flex-col items-center justify-center px-8 py-14 text-xl font-bold md:w-4/5 desktop:w-1/2 lg:w-3/4 lg:px-0"}
 >
-    <div class="flex flex-col items-center justify-between w-full lg:flex-row">
+    <div
+        class={"flex w-full flex-col items-center justify-between lg:flex-row"}
+    >
         <span
-            class="flex-row items-center justify-end hidden w-full gap-4 lg:inline-flex lg:justify-center"
+            class={"hidden w-full flex-row items-center justify-end gap-4 lg:inline-flex lg:justify-center"}
         >
             Hecho por
             <a
-                role="link"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex flex-row items-center justify-center gap-2 py-4"
+                class={"inline-flex flex-row items-center justify-center gap-2 py-4"}
                 href={GITHUB_PROFILE_LINK}
+                rel={"noopener noreferrer"}
+                role={"link"}
+                target={"_blank"}
             >
-                <GithubIcon class="inline-block w-6 h-6" name="icon" /> NewCastile
+                <GithubIcon class={"inline-block size-6"} name={"icon"} /> NewCastile
             </a>
         </span>
         <div
-            class="flex flex-col items-center justify-center w-full gap-4 sm:flex-row lg:justify-center lg:gap-10"
+            class={"flex w-full flex-col items-center justify-center gap-4 sm:flex-row lg:justify-center lg:gap-10"}
         >
             <a
-                class="px-2 py-4"
-                target="_blank"
-                rel="noopener noreferrer"
+                class={"px-2 py-4"}
                 href={MAILTO_LINK}
+                rel={"noopener noreferrer"}
+                target={"_blank"}
             >
-                <MailForwardIcon class="inline-block w-10 h-10" />
+                <MailForwardIcon class={"inline-block size-10"} />
                 Github
             </a>
             <a
-                class="px-2 py-4"
+                class={"px-2 py-4"}
                 href={LINKEDIN_PROFILE_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
+                rel={"noopener noreferrer"}
+                target={"_blank"}
             >
-                <LinkedInIcon class="inline-block w-6 h-6" />
+                <LinkedInIcon class={"inline-block size-6"} />
                 LinkedIn
             </a>
             <a
-                class="block px-2 py-4 lg:hidden"
+                class={"block px-2 py-4 lg:hidden"}
                 href={GITHUB_PROFILE_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
+                rel={"noopener noreferrer"}
+                target={"_blank"}
             >
-                <GithubIcon class="inline-block w-6 h-6" />
+                <GithubIcon class={"inline-block size-6"} />
                 Github
             </a>
         </div>

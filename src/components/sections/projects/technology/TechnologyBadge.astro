@@ -3,49 +3,49 @@ import { Image } from "astro:assets";
 import Badge from "../../../shared/Badge.astro";
 
 interface Technology {
-    name: string;
-    icon: {
-        src: ImageMetadata;
-        size: number;
-        background?: boolean;
-        backgroundColor?: string;
-    };
+  name: string;
+  icon: {
+    src: ImageMetadata;
+    size: number;
+    background?: boolean;
+    backgroundColor?: string;
+  };
 }
 
-type Props = {
-    technology: Technology;
-};
+interface Props {
+  technology: Technology;
+}
 
 const { technology } = Astro.props;
 
 const {
-    icon: { src: TechnologyIcon, size, background, backgroundColor },
-    name,
+  icon: { src: TechnologyIcon, size, background, backgroundColor },
+  name,
 } = technology;
 
 const badgeClass = `flex flex-col items-center justify-center p-2 bg-${backgroundColor} rounded-full`;
 ---
 
 <Badge>
-    {
-        background && backgroundColor ? (
-            <div slot="icon" class={badgeClass}>
-                <Image
-                    width={size}
-                    height={size}
-                    src={TechnologyIcon}
-                    alt="techonology-icon"
-                />
-            </div>
-        ) : (
-            <Image
-                slot="icon"
-                width={size}
-                height={size}
-                src={TechnologyIcon}
-                alt="techonology-icon"
-            />
-        )
-    }
-    {name}
+  {
+    background && backgroundColor ? (
+      <div class={badgeClass} slot={"icon"}>
+        <Image
+          alt={"techonology-icon"}
+          height={size}
+          src={TechnologyIcon}
+          width={size}
+        />
+      </div>
+    ) : (
+      <Image
+        alt={"techonology-icon"}
+        height={size}
+        slot={"icon"}
+        src={TechnologyIcon}
+        width={size}
+      />
+    )
+  }
+  {name}
 </Badge>

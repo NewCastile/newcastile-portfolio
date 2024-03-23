@@ -8,7 +8,7 @@ interface NavItems {
     url: string;
 }
 
-const navItems: Array<NavItems> = [
+const navItems: NavItems[] = [
     {
         title: "proyectos",
         label: "projects",

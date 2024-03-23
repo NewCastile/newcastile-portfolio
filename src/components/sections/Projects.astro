@@ -22,237 +22,230 @@ import cloverKingdomImg from "../../images/projects/clover-kingdom.jpg";
 import typerunImg from "../../images/projects/typerun.jpg";
 import basementStudioChallengeImg from "../../images/projects/basement-studio-challenge.jpg";
 import spaceTourismChallengeImg from "../../images/projects/space-tourism-challenge.jpg";
-
 import TechnologyGroup from "./projects/technology/TechnologyGroup.astro";
 
-interface Project {
-    name: string;
-    description: string;
-    image: ImageMetadata;
-    technologies: Array<{
-        name: string;
-        icon: {
-            src: ImageMetadata;
-            size: number;
-            background?: boolean;
-            backgroundColor?: string;
-        };
-    }>;
-    repo: string;
-    web?: string;
+import Project from "../sections/projects/Project.astro";
+
+export interface Project {
+  name: string;
+  description: string;
+  image: ImageMetadata;
+  technologies: Array<TechnologyGroupItem>;
+  repo: string;
+  web?: string;
 }
 
-interface TechnologyGroupItem {
-    name: string;
-    icon: {
-        src: ImageMetadata;
-        size: number;
-    };
+export interface TechnologyGroupItem {
+  name: string;
+  icon: {
+    src: ImageMetadata;
+    size: number;
+    background?: boolean;
+    backgroundColor?: string;
+  };
 }
 
-interface TechnologyGroup {
-    name: string;
-    items: Array<TechnologyGroupItem>;
+export interface TechnologyGroup {
+  name: string;
+  items: TechnologyGroupItem[];
 }
 
-const projects: Array<Project> = [
-    {
-        name: "My Multi-Twitch",
-        image: myMultiTwitchImg,
-        description: `Visor multi-stream. El usuario <span class="highlight">puede 
+const projects: Project[] = [
+  {
+    name: "My Multi-Twitch",
+    image: myMultiTwitchImg,
+    description: `Visor multi-stream. El usuario <span class="highlight">puede 
                 regristrarse con su  cuenta de twitch</span> para poder 
                 ver y seleccionar las <span class="highlight">transmisiones de 
                 los streamers que sigue</span>. De cualquier forma podrá encontrar 
                 otras transmisiónes con la 
                 ayuda de una <span class="highlight">barra de búsqueda</span>.`,
-        technologies: [
-            { name: "Typescript", icon: { src: TypescriptIcon, size: 12 } },
-            { name: "NextJS", icon: { src: NextIcon, size: 12 } },
-            { name: "Supabase", icon: { src: SupabaseIcon, size: 12 } },
-            { name: "TailwindCSS", icon: { src: TailwindIcon, size: 12 } },
-            { name: "Redux", icon: { src: ReduxIcon, size: 12 } },
-        ],
-        repo: "https://github.com/NewCastile/my-multi-twitch",
-        web: "https://my-multi-twitch.vercel.app",
-    },
-    {
-        name: "Clover Kingdom",
-        image: cloverKingdomImg,
-        description: `Lector de manga en donde se agrupan y describen los arcos de 
+    technologies: [
+      { name: "Typescript", icon: { src: TypescriptIcon, size: 12 } },
+      { name: "NextJS", icon: { src: NextIcon, size: 12 } },
+      { name: "Supabase", icon: { src: SupabaseIcon, size: 12 } },
+      { name: "TailwindCSS", icon: { src: TailwindIcon, size: 12 } },
+      { name: "Redux", icon: { src: ReduxIcon, size: 12 } },
+    ],
+    repo: "https://github.com/NewCastile/my-multi-twitch",
+    web: "https://my-multi-twitch.vercel.app",
+  },
+  {
+    name: "Clover Kingdom",
+    image: cloverKingdomImg,
+    description: `Lector de manga en donde se agrupan y describen los arcos de 
             cada serie presentada con sus respectivos capítulos <span class="highlight">ofreciendo 
                 la oportunidad de descargarlos</span>.`,
-        technologies: [
-            { name: "Typescript", icon: { src: TypescriptIcon, size: 12 } },
-            { name: "NextJS", icon: { src: NextIcon, size: 12 } },
-            { name: "ChakraUI", icon: { src: ChakraIcon, size: 12 } },
-            { name: "MongoDB", icon: { src: MongoIcon, size: 8 } },
-        ],
-        repo: "https://github.com/NewCastile/clover-kingdom",
-        web: "https://clover-kingdom.vercel.app",
-    },
-    {
-        name: "Weatheria",
-        image: weatheriaImg,
-        description: `Aplicación del clima en donde el usuario podrá conocer el clima 
+    technologies: [
+      { name: "Typescript", icon: { src: TypescriptIcon, size: 12 } },
+      { name: "NextJS", icon: { src: NextIcon, size: 12 } },
+      { name: "ChakraUI", icon: { src: ChakraIcon, size: 12 } },
+      { name: "MongoDB", icon: { src: MongoIcon, size: 8 } },
+    ],
+    repo: "https://github.com/NewCastile/clover-kingdom",
+    web: "https://clover-kingdom.vercel.app",
+  },
+  {
+    name: "Weatheria",
+    image: weatheriaImg,
+    description: `Aplicación del clima en donde el usuario podrá conocer el clima 
             de la ciudad que desee mediante un <span class="highlight">buscador</span> que 
             cuenta con una <span class="highlight">caja de auto-completado</span>. Según el pronóstico 
             del clima la aplicación <span class="highlight">cambiará 
                 de tema</span>.`,
-        technologies: [
-            { name: "Typescript", icon: { src: TypescriptIcon, size: 12 } },
-            {
-                name: "Remix",
-                icon: {
-                    src: RemixIcon,
-                    size: 8,
-                    background: true,
-                    backgroundColor: "black",
-                },
-            },
-            { name: "ChakraUI", icon: { src: ChakraIcon, size: 12 } },
-        ],
-        repo: "https://github.com/NewCastile/weatheria",
-        web: "https://weatheria-newcastile.vercel.app",
-    },
-    {
-        name: "Typerun",
-        description: `<span class="highlight">Juego contra-reloj</span> 
+    technologies: [
+      { name: "Typescript", icon: { src: TypescriptIcon, size: 12 } },
+      {
+        name: "Remix",
+        icon: {
+          src: RemixIcon,
+          size: 8,
+          background: true,
+          backgroundColor: "black",
+        },
+      },
+      { name: "ChakraUI", icon: { src: ChakraIcon, size: 12 } },
+    ],
+    repo: "https://github.com/NewCastile/weatheria",
+    web: "https://weatheria-newcastile.vercel.app",
+  },
+  {
+    name: "Typerun",
+    description: `<span class="highlight">Juego contra-reloj</span> 
         en donde el usuario deberá escribir una palabra por cada letra del abecedario. 
         Se detallan al final el tiempo total transcurrido 
         así como las <span class="highlight">deficiones y ejemplos de las palabras 
         usando la Free Dictionary API.</span>`,
-        image: typerunImg,
-        technologies: [
-            { name: "Typescript", icon: { src: TypescriptIcon, size: 12 } },
-            { name: "NextJS", icon: { src: NextIcon, size: 12 } },
-            { name: "Cypress", icon: { src: CypressIcon, size: 22 } },
-            { name: "TailwindCSS", icon: { src: TailwindIcon, size: 12 } },
-        ],
-        repo: "https://github.com/NewCastile/Typerun",
-        web: "https://typerun.vercel.app",
-    },
-    {
-        name: "Gophy",
-        image: gophyImg,
-        description: `Buscador de GIFs utilizando la <span class="highlight">Giphy API</span>. Muestra en pantalla los GIFs 
+    image: typerunImg,
+    technologies: [
+      { name: "Typescript", icon: { src: TypescriptIcon, size: 12 } },
+      { name: "NextJS", icon: { src: NextIcon, size: 12 } },
+      { name: "Cypress", icon: { src: CypressIcon, size: 22 } },
+      { name: "TailwindCSS", icon: { src: TailwindIcon, size: 12 } },
+    ],
+    repo: "https://github.com/NewCastile/Typerun",
+    web: "https://typerun.vercel.app",
+  },
+  {
+    name: "Gophy",
+    image: gophyImg,
+    description: `Buscador de GIFs utilizando la <span class="highlight">Giphy API</span>. Muestra en pantalla los GIFs 
             más populares según su categoría <span class="highlight">pudiendo ampliar 
                 los resultados mediante scrolleo infinito</span>.`,
-        technologies: [
-            { name: "Typescript", icon: { src: TypescriptIcon, size: 12 } },
-            { name: "React", icon: { src: ReactIcon, size: 12 } },
-            { name: "Vite", icon: { src: ViteIcon, size: 12 } },
-            { name: "ChakraUI", icon: { src: ChakraIcon, size: 12 } },
-        ],
-        repo: "https://github.com/NewCastile/gophy",
-        web: "https://gophy.vercel.app",
-    },
-    {
-        name: "Space Tourism Challenge",
-        image: spaceTourismChallengeImg,
-        description: `Desafío frontend tomado de la página de <span class="highlight">Frontend 
+    technologies: [
+      { name: "Typescript", icon: { src: TypescriptIcon, size: 12 } },
+      { name: "React", icon: { src: ReactIcon, size: 12 } },
+      { name: "Vite", icon: { src: ViteIcon, size: 12 } },
+      { name: "ChakraUI", icon: { src: ChakraIcon, size: 12 } },
+    ],
+    repo: "https://github.com/NewCastile/gophy",
+    web: "https://gophy.vercel.app",
+  },
+  {
+    name: "Space Tourism Challenge",
+    image: spaceTourismChallengeImg,
+    description: `Desafío frontend tomado de la página de <span class="highlight">Frontend 
                 Mentor</span>. Consiste en una página para turismo 
                 espacial estilizada siguiendo toda la documentación ofrecida incluyendo código de 
                 colores, fuentes, tipografía y diseño responsive.`,
-        technologies: [
-            { name: "Typescript", icon: { src: TypescriptIcon, size: 12 } },
-            { name: "React", icon: { src: ReactIcon, size: 12 } },
-            { name: "Vite", icon: { src: ViteIcon, size: 12 } },
-            { name: "TailwindCSS", icon: { src: TailwindIcon, size: 12 } },
-        ],
-        repo: "https://github.com/NewCastile/space-tourism-challenge",
-        web: "https://space-tourism-challenge.vercel.app",
-    },
-    {
-        name: "Basement Studio Challenge",
-        image: basementStudioChallengeImg,
-        description: `Desafío frontend tomado de <span class="highlight">Basement Studio</span>. 
+    technologies: [
+      { name: "Typescript", icon: { src: TypescriptIcon, size: 12 } },
+      { name: "React", icon: { src: ReactIcon, size: 12 } },
+      { name: "Vite", icon: { src: ViteIcon, size: 12 } },
+      { name: "TailwindCSS", icon: { src: TailwindIcon, size: 12 } },
+    ],
+    repo: "https://github.com/NewCastile/space-tourism-challenge",
+    web: "https://space-tourism-challenge.vercel.app",
+  },
+  {
+    name: "Basement Studio Challenge",
+    image: basementStudioChallengeImg,
+    description: `Desafío frontend tomado de <span class="highlight">Basement Studio</span>. 
             Se trata de una plantilla de e-commerce sencilla en donde el usuario 
             podrá <span class="highlight">añadir y remover artículos de 
             un carrito de compras</span>.`,
-        technologies: [
-            { name: "Typescript", icon: { src: TypescriptIcon, size: 12 } },
-            { name: "React", icon: { src: ReactIcon, size: 12 } },
-            { name: "TailwindCSS", icon: { src: TailwindIcon, size: 12 } },
-        ],
-        repo: "https://github.com/NewCastile/basement-studio-challenge",
-        web: "https://basement-studio-challenge-hazel.vercel.app",
-    },
+    technologies: [
+      { name: "Typescript", icon: { src: TypescriptIcon, size: 12 } },
+      { name: "React", icon: { src: ReactIcon, size: 12 } },
+      { name: "TailwindCSS", icon: { src: TailwindIcon, size: 12 } },
+    ],
+    repo: "https://github.com/NewCastile/basement-studio-challenge",
+    web: "https://basement-studio-challenge-hazel.vercel.app",
+  },
 ];
 
-const technologyGroups: Array<TechnologyGroup> = [
-    {
-        name: "Lenguajes",
-        items: [
-            {
-                name: "HTML5",
-                icon: { src: HTMLIcon, size: 24 },
-            },
-            {
-                name: "CSS3",
-                icon: { src: CSSIcon, size: 24 },
-            },
-            {
-                name: "Javascript",
-                icon: { src: JavascriptIcon, size: 24 },
-            },
-            {
-                name: "Typescript",
-                icon: { src: TypescriptIcon, size: 24 },
-            },
-        ],
-    },
-    {
-        name: "Frameworks",
-        items: [
-            {
-                name: "ReactJS",
-                icon: { src: ReactIcon, size: 24 },
-            },
-            {
-                name: "NextJS",
-                icon: { src: NextIcon, size: 24 },
-            },
-            {
-                name: "TailwindCSS",
-                icon: { src: TailwindIcon, size: 24 },
-            },
-            {
-                name: "ChakraUI",
-                icon: { src: ChakraIcon, size: 24 },
-            },
-        ],
-    },
+const technologyGroups: TechnologyGroup[] = [
+  {
+    name: "Lenguajes",
+    items: [
+      {
+        name: "HTML5",
+        icon: { src: HTMLIcon, size: 24 },
+      },
+      {
+        name: "CSS3",
+        icon: { src: CSSIcon, size: 24 },
+      },
+      {
+        name: "Javascript",
+        icon: { src: JavascriptIcon, size: 24 },
+      },
+      {
+        name: "Typescript",
+        icon: { src: TypescriptIcon, size: 24 },
+      },
+    ],
+  },
+  {
+    name: "Frameworks",
+    items: [
+      {
+        name: "ReactJS",
+        icon: { src: ReactIcon, size: 24 },
+      },
+      {
+        name: "NextJS",
+        icon: { src: NextIcon, size: 24 },
+      },
+      {
+        name: "TailwindCSS",
+        icon: { src: TailwindIcon, size: 24 },
+      },
+      {
+        name: "ChakraUI",
+        icon: { src: ChakraIcon, size: 24 },
+      },
+    ],
+  },
 ];
-
-import Project from "../sections/projects/Project.astro";
 ---
 
 <section
-    class="flex flex-col items-start justify-center w-full gap-8 md:w-11/12 pt-28"
-    id="projects"
+  class={"flex w-full flex-col items-start justify-center gap-8 pt-28 md:w-11/12"}
+  id={"projects"}
 >
-    <h3
-        class="inline-flex flex-row items-center justify-center w-full gap-4 text-4xl md:justify-start"
-    >
-        <StackIcon class="hidden w-20 h-20 sm-mobile:inline-block" />Proyectos
-    </h3>
-    <div class="flex flex-col items-center justify-center gap-14">
-        <div class="flex flex-col items-center justify-center gap-12">
-            {
-                projects.map((project) => {
-                    return <Project project={project} />;
-                })
-            }
-        </div>
-        <div class="flex flex-col items-center justify-center w-full gap-5">
-            <h4 class="w-full text-3xl text-center">Lenguajes y frameworks</h4>
-            <ul class="flex flex-col items-center justify-center gap-5">
-                {
-                    technologyGroups.map((group) => {
-                        return <TechnologyGroup technologyGroup={group} />;
-                    })
-                }
-            </ul>
-        </div>
+  <h3
+    class={"inline-flex w-full flex-row items-center justify-center gap-4 text-4xl md:justify-start"}
+  >
+    <StackIcon class={"hidden size-20 sm-mobile:inline-block"} />Proyectos
+  </h3>
+  <div class={"flex flex-col items-center justify-center gap-14"}>
+    <div class={"flex flex-col items-center justify-center gap-12"}>
+      {
+        projects.map((project) => {
+          return <Project project={project} />;
+        })
+      }
     </div>
+    <div class={"flex w-full flex-col items-center justify-center gap-5"}>
+      <h4 class={"w-full text-center text-3xl"}>Lenguajes y frameworks</h4>
+      <ul class={"flex flex-col items-center justify-center gap-5"}>
+        {
+          technologyGroups.map((group) => {
+            return <TechnologyGroup technologyGroup={group} />;
+          })
+        }
+      </ul>
+    </div>
+  </div>
 </section>

@@ -2,49 +2,54 @@
 import { Image } from "astro:assets";
 
 interface TechnologyGroupItem {
-    name: string;
-    icon: {
-        src: ImageMetadata;
-        size: number;
-    };
+  name: string;
+  icon: {
+    src: ImageMetadata;
+    size: number;
+  };
 }
 
 interface TechnologyGroup {
-    name: string;
-    items: Array<TechnologyGroupItem>;
+  name: string;
+  items: TechnologyGroupItem[];
 }
 
-type Props = {
-    technologyGroup: TechnologyGroup;
-};
+interface Props {
+  technologyGroup: TechnologyGroup;
+}
 
 const {
-    technologyGroup: { items },
+  technologyGroup: { items },
 } = Astro.props;
 ---
 
 <li
-    class="flex flex-col items-start justify-center gap-6 sm-mobile:items-center"
+  class={"flex flex-col items-start justify-center gap-6 sm-mobile:items-center"}
 >
-    <div class="flex flex-col flex-wrap gap-2 sm-mobile:flex-row">
-        {
-            items.map((item) => {
-                const {
-                    icon: { size, src },
-                    name,
-                } = item;
-                return (
-                    <span class="inline-flex items-center gap-4 px-6 py-2 font-semibold text-gray-500 border border-indigo-300 rounded-full bg-violet-100">
-                        <Image
-                            width={size}
-                            height={size}
-                            src={src}
-                            alt={`${name.toLowerCase()}-icon`}
-                        />
-                        {name}
-                    </span>
-                );
-            })
-        }
-    </div>
+  <div class={"flex flex-col flex-wrap gap-2 sm-mobile:flex-row"}>
+    {
+      items.map((item) => {
+        const {
+          icon: { size, src },
+          name,
+        } = item;
+
+        return (
+          <span
+            class={
+              "inline-flex items-center gap-4 rounded-full border border-indigo-300 bg-violet-100 px-6 py-2 font-semibold text-gray-500"
+            }
+          >
+            <Image
+              alt={`${name.toLowerCase()}-icon`}
+              height={size}
+              src={src}
+              width={size}
+            />
+            {name}
+          </span>
+        );
+      })
+    }
+  </div>
 </li>
