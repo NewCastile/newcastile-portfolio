@@ -1,0 +1,65 @@
+---
+import { Image } from "astro:assets";
+import Link from "../../shared/Link.astro";
+import LinkIcon from "../../icons/Link.astro";
+
+interface Course {
+    name: string;
+    teachers: [string];
+    certificateSrc: ImageMetadata;
+    link: string;
+}
+
+type Props = {
+    course: Course;
+};
+
+const {
+    course: { name, certificateSrc, link, teachers },
+} = Astro.props;
+---
+
+<article
+    class="w-full flex flex-col justify-center items-center gap-4 lg:grid lg:grid-cols-2 lg:gap-8"
+>
+    <div class="w-full flex h-full flex-col justify-between items-start gap-4">
+        <div class="flex flex-col justify-start items-center gap-4 lg:gap-8">
+            <h4 id="course-title" class="text-2xl">
+                {name}
+            </h4>
+            <div class="w-full flex flex-col justify-center items-center gap-6">
+                <span
+                    class="font-bold text-xl text-left w-full underline decoration-4 underline-offset-4 decoration-indigo-400"
+                >
+                    Instruído por:
+                </span>
+                <div
+                    class="flex flex-row flex-wrap w-full justify-center items-center gap-2"
+                >
+                    {
+                        teachers.map((teacher) => {
+                            return (
+                                <span class="font-medium text-xl text-left w-full">
+                                    {teacher}
+                                </span>
+                            );
+                        })
+                    }
+                </div>
+            </div>
+        </div>
+        <span class="hidden lg:block">
+            <Link href={link}>
+                <LinkIcon />
+                Dirección
+            </Link>
+        </span>
+    </div>
+    <Image class={"h-full"} src={certificateSrc} alt={"certificate"} />
+    <span class="self-end block lg:hidden">
+        <Link href={link}>
+            <LinkIcon />
+            Dirección
+        </Link>
+    </span>
+</article>

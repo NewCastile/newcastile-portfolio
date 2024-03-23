@@ -1,0 +1,37 @@
+---
+import { Image } from "astro:assets";
+import Badge from "../../../shared/Badge.astro";
+
+const { technology } = Astro.props;
+
+const {
+    icon: { src: TechnologyIcon, size, background, backgroundColor },
+    name,
+} = technology;
+
+const badgeClass = `rounded-full flex flex-col justify-center items-center p-2 bg-${backgroundColor}`;
+---
+
+<Badge>
+    {
+        background && backgroundColor ? (
+            <div slot="icon" class={badgeClass}>
+                <Image
+                    width={size}
+                    height={size}
+                    src={TechnologyIcon}
+                    alt="techonology-icon"
+                />
+            </div>
+        ) : (
+            <Image
+                slot="icon"
+                width={size}
+                height={size}
+                src={TechnologyIcon}
+                alt="techonology-icon"
+            />
+        )
+    }
+    {name}
+</Badge>

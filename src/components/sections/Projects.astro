@@ -1,0 +1,258 @@
+---
+import ReduxIcon from "../../images/icons/redux.svg";
+import HTMLIcon from "../../images/icons/html5.svg";
+import CSSIcon from "../../images/icons/css.svg";
+import JavascriptIcon from "../../images/icons/javascript.svg";
+import StackIcon from "../../components/icons/Stack.astro";
+import ChakraIcon from "../../images/icons/chakra.svg";
+import NextIcon from "../../images/icons/next.svg";
+import CypressIcon from "../../images/icons/cypress.svg";
+import MongoIcon from "../../images/icons/mongo.svg";
+import ReactIcon from "../../images/icons/react.svg";
+import TailwindIcon from "../../images/icons/tailwind.svg";
+import TypescriptIcon from "../../images/icons/typescript.svg";
+import ViteIcon from "../../images/icons/vite.svg";
+import RemixIcon from "../../images/icons/remix.svg";
+import SupabaseIcon from "../../images/icons/supabase.svg";
+
+import gophyImg from "../../images/projects/gophy.jpg";
+import weatheriaImg from "../../images/projects/weatheria.jpg";
+import myMultiTwitchImg from "../../images/projects/my-multi-twitch.jpg";
+import cloverKingdomImg from "../../images/projects/clover-kingdom.jpg";
+import typerunImg from "../../images/projects/typerun.jpg";
+import basementStudioChallengeImg from "../../images/projects/basement-studio-challenge.jpg";
+import spaceTourismChallengeImg from "../../images/projects/space-tourism-challenge.jpg";
+
+import TechnologyGroup from "./projects/technology/TechnologyGroup.astro";
+
+interface Project {
+    name: string;
+    description: string;
+    image: ImageMetadata;
+    technologies: Array<{
+        name: string;
+        icon: {
+            src: ImageMetadata;
+            size: number;
+            background?: boolean;
+            backgroundColor?: string;
+        };
+    }>;
+    repo: string;
+    web?: string;
+}
+
+interface TechnologyGroupItem {
+    name: string;
+    icon: {
+        src: ImageMetadata;
+        size: number;
+    };
+}
+
+interface TechnologyGroup {
+    name: string;
+    items: Array<TechnologyGroupItem>;
+}
+
+const projects: Array<Project> = [
+    {
+        name: "My Multi-Twitch",
+        image: myMultiTwitchImg,
+        description: `Visor multi-stream. El usuario <span class="highlight">puede 
+                regristrarse con su  cuenta de twitch</span> para poder 
+                ver y seleccionar las <span class="highlight">transmisiones de 
+                los streamers que sigue</span>. De cualquier forma podrá encontrar 
+                otras transmisiónes con la 
+                ayuda de una <span class="highlight">barra de búsqueda</span>.`,
+        technologies: [
+            { name: "Typescript", icon: { src: TypescriptIcon, size: 12 } },
+            { name: "NextJS", icon: { src: NextIcon, size: 12 } },
+            { name: "Supabase", icon: { src: SupabaseIcon, size: 12 } },
+            { name: "TailwindCSS", icon: { src: TailwindIcon, size: 12 } },
+            { name: "Redux", icon: { src: ReduxIcon, size: 12 } },
+        ],
+        repo: "https://github.com/NewCastile/my-multi-twitch",
+        web: "https://my-multi-twitch.vercel.app",
+    },
+    {
+        name: "Clover Kingdom",
+        image: cloverKingdomImg,
+        description: `Lector de manga en donde se agrupan y describen los arcos de 
+            cada serie presentada con sus respectivos capítulos <span class="highlight">ofreciendo 
+                la oportunidad de descargarlos</span>.`,
+        technologies: [
+            { name: "Typescript", icon: { src: TypescriptIcon, size: 12 } },
+            { name: "NextJS", icon: { src: NextIcon, size: 12 } },
+            { name: "ChakraUI", icon: { src: ChakraIcon, size: 12 } },
+            { name: "MongoDB", icon: { src: MongoIcon, size: 8 } },
+        ],
+        repo: "https://github.com/NewCastile/clover-kingdom",
+        web: "https://clover-kingdom.vercel.app",
+    },
+    {
+        name: "Weatheria",
+        image: weatheriaImg,
+        description: `Aplicación del clima en donde el usuario podrá conocer el clima 
+            de la ciudad que desee mediante un <span class="highlight">buscador</span> que 
+            cuenta con una <span class="highlight">caja de auto-completado</span>. Según el pronóstico 
+            del clima la aplicación <span class="highlight">cambiará 
+                de tema</span>.`,
+        technologies: [
+            { name: "Typescript", icon: { src: TypescriptIcon, size: 12 } },
+            {
+                name: "Remix",
+                icon: {
+                    src: RemixIcon,
+                    size: 8,
+                    background: true,
+                    backgroundColor: "black",
+                },
+            },
+            { name: "ChakraUI", icon: { src: ChakraIcon, size: 12 } },
+        ],
+        repo: "https://github.com/NewCastile/weatheria",
+        web: "https://weatheria-newcastile.vercel.app",
+    },
+    {
+        name: "Typerun",
+        description: `<span class="highlight">Juego contra-reloj</span> 
+        en donde el usuario deberá escribir una palabra por cada letra del abecedario. 
+        Se detallan al final el tiempo total transcurrido 
+        así como las <span class="highlight">deficiones y ejemplos de las palabras 
+        usando la Free Dictionary API.</span>`,
+        image: typerunImg,
+        technologies: [
+            { name: "Typescript", icon: { src: TypescriptIcon, size: 12 } },
+            { name: "NextJS", icon: { src: NextIcon, size: 12 } },
+            { name: "Cypress", icon: { src: CypressIcon, size: 22 } },
+            { name: "TailwindCSS", icon: { src: TailwindIcon, size: 12 } },
+        ],
+        repo: "https://github.com/NewCastile/Typerun",
+        web: "https://typerun.vercel.app",
+    },
+    {
+        name: "Gophy",
+        image: gophyImg,
+        description: `Buscador de GIFs utilizando la <span class="highlight">Giphy API</span>. Muestra en pantalla los GIFs 
+            más populares según su categoría <span class="highlight">pudiendo ampliar 
+                los resultados mediante scrolleo infinito</span>.`,
+        technologies: [
+            { name: "Typescript", icon: { src: TypescriptIcon, size: 12 } },
+            { name: "React", icon: { src: ReactIcon, size: 12 } },
+            { name: "Vite", icon: { src: ViteIcon, size: 12 } },
+            { name: "ChakraUI", icon: { src: ChakraIcon, size: 12 } },
+        ],
+        repo: "https://github.com/NewCastile/gophy",
+        web: "https://gophy.vercel.app",
+    },
+    {
+        name: "Space Tourism Challenge",
+        image: spaceTourismChallengeImg,
+        description: `Desafío frontend tomado de la página de <span class="highlight">Frontend 
+                Mentor</span>. Consiste en una página para turismo 
+                espacial estilizada siguiendo toda la documentación ofrecida incluyendo código de 
+                colores, fuentes, tipografía y diseño responsive.`,
+        technologies: [
+            { name: "Typescript", icon: { src: TypescriptIcon, size: 12 } },
+            { name: "React", icon: { src: ReactIcon, size: 12 } },
+            { name: "Vite", icon: { src: ViteIcon, size: 12 } },
+            { name: "TailwindCSS", icon: { src: TailwindIcon, size: 12 } },
+        ],
+        repo: "https://github.com/NewCastile/space-tourism-challenge",
+        web: "https://space-tourism-challenge.vercel.app",
+    },
+    {
+        name: "Basement Studio Challenge",
+        image: basementStudioChallengeImg,
+        description: `Desafío frontend tomado de <span class="highlight">Basement Studio</span>. 
+            Se trata de una plantilla de e-commerce sencilla en donde el usuario 
+            podrá <span class="highlight">añadir y remover artículos de 
+            un carrito de compras</span>.`,
+        technologies: [
+            { name: "Typescript", icon: { src: TypescriptIcon, size: 12 } },
+            { name: "React", icon: { src: ReactIcon, size: 12 } },
+            { name: "TailwindCSS", icon: { src: TailwindIcon, size: 12 } },
+        ],
+        repo: "https://github.com/NewCastile/basement-studio-challenge",
+        web: "https://basement-studio-challenge-hazel.vercel.app",
+    },
+];
+
+const technologyGroups: Array<TechnologyGroup> = [
+    {
+        name: "Lenguajes",
+        items: [
+            {
+                name: "HTML5",
+                icon: { src: HTMLIcon, size: 24 },
+            },
+            {
+                name: "CSS3",
+                icon: { src: CSSIcon, size: 24 },
+            },
+            {
+                name: "Javascript",
+                icon: { src: JavascriptIcon, size: 24 },
+            },
+            {
+                name: "Typescript",
+                icon: { src: TypescriptIcon, size: 24 },
+            },
+        ],
+    },
+    {
+        name: "Frameworks",
+        items: [
+            {
+                name: "ReactJS",
+                icon: { src: ReactIcon, size: 24 },
+            },
+            {
+                name: "NextJS",
+                icon: { src: NextIcon, size: 24 },
+            },
+            {
+                name: "TailwindCSS",
+                icon: { src: TailwindIcon, size: 24 },
+            },
+            {
+                name: "ChakraUI",
+                icon: { src: ChakraIcon, size: 24 },
+            },
+        ],
+    },
+];
+
+import Project from "../sections/projects/Project.astro";
+---
+
+<section
+    class="w-full md:w-11/12 flex flex-col justify-center items-start gap-8 pt-28"
+    id="projects"
+>
+    <h3
+        class="w-full inline-flex text-4xl flex-row justify-center md:justify-start items-center gap-4"
+    >
+        <StackIcon class="w-20 h-20 hidden sm-mobile:inline-block" />Proyectos
+    </h3>
+    <div class="flex flex-col justify-center items-center gap-14">
+        <div class="flex flex-col justify-center items-center gap-12">
+            {
+                projects.map((project) => {
+                    return <Project project={project} />;
+                })
+            }
+        </div>
+        <div class="w-full flex flex-col justify-center items-center gap-5">
+            <h4 class="w-full text-center text-3xl">Lenguajes y frameworks</h4>
+            <ul class="flex flex-col justify-center items-center gap-5">
+                {
+                    technologyGroups.map((group) => {
+                        return <TechnologyGroup technologyGroup={group} />;
+                    })
+                }
+            </ul>
+        </div>
+    </div>
+</section>

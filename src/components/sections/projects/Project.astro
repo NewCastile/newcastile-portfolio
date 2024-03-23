@@ -1,0 +1,97 @@
+---
+import { Image } from "astro:assets";
+import ExternalLink from "../../icons/ExternalLink.astro";
+import TechnologyBadge from "./technology/TechnologyBadge.astro";
+import ProjectLinks from "./ProjectLinks.astro";
+
+interface Project {
+    name: string;
+    description: string;
+    image: ImageMetadata;
+    technologies: Array<{
+        name: string;
+        icon: {
+            src: ImageMetadata;
+            size: number;
+            background?: boolean;
+            backgroundColor?: string;
+        };
+    }>;
+    repo: string;
+    web?: string;
+}
+
+interface Props {
+    project: Project;
+}
+
+const { project } = Astro.props;
+---
+
+<article class="flex flex-col md:flex-row justify-center items-center gap-12">
+    <div
+        class="relative group hidden lg:flex flex-col justify-center items-center w-1/2 h-full rounded-xl"
+    >
+        <div
+            class="absolute w-full h-full hidden group-hover:flex flex-col justify-center items-center group-hover:animate-fade-in p-2 group-hover:bg-slate-800/80 backdrop-blur rounded-xl"
+        >
+            <a
+                target="_blank"
+                href={`${project.web ? project.web : project.repo}`}
+            >
+                <ExternalLink
+                    class="size-16 stroke-2 stroke-white"
+                    name="icon"
+                />
+            </a>
+        </div>
+        <Image
+            src={project.image}
+            alt={"project-image"}
+            class="hidden lg:block w-full h-full rounded-xl"
+        />
+    </div>
+    <div class="w-full lg:w-1/2 flex flex-col justify-center items-start gap-4">
+        <h4 class="w-full sm:w-max text-center sm:text-left text-2xl">
+            {project.name}
+        </h4>
+        <div class="hidden sm-mobile:flex lg:hidden flex-row flex-wrap gap-4">
+            {
+                project.technologies.map((technology) => {
+                    return <TechnologyBadge technology={technology} />;
+                })
+            }
+        </div>
+        <div
+            class="relative group flex lg:hidden flex-col justify-center items-center w-full lg:w-1/2 h-full rounded-xl"
+        >
+            <div
+                class="absolute w-full h-full hidden group-hover:flex flex-col justify-center group-hover:animate-fade-in items-center p-2 group-hover:bg-slate-800/80 backdrop-blur rounded-xl"
+            >
+                <a
+                    target="_blank"
+                    href={`${project.web ? project.web : project.repo}`}
+                >
+                    <ExternalLink
+                        class="size-16 stroke-2 stroke-white"
+                        name="icon"
+                    />
+                </a>
+            </div>
+            <Image
+                src={project.image}
+                alt={"project-image"}
+                class="block lg:hidden w-full h-full rounded-xl"
+            />
+        </div>
+        <div class="hidden lg:flex flex-row flex-wrap gap-4">
+            {
+                project.technologies.map((technology) => {
+                    return <TechnologyBadge technology={technology} />;
+                })
+            }
+        </div>
+        <p set:html={project.description} class="w-full" />
+        <ProjectLinks web={project.web} repo={project.repo} />
+    </div>
+</article>

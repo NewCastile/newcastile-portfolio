@@ -1,0 +1,41 @@
+---
+import CertificateIcon from "../../components/icons/Certificate.astro";
+import firstCertificate from "../../images/certificates/first-certificate.jpg";
+import Certificate from "../sections/certificates/Certificate.astro";
+
+interface Course {
+    name: string;
+    teachers: [string];
+    certificateSrc: ImageMetadata;
+    link: string;
+}
+
+const courses: Array<Course> = [
+    {
+        name: "React - Guía definitiva: hooks router redux next +Proyectos",
+        teachers: ["Nicholas Schurmann"],
+        certificateSrc: firstCertificate,
+        link: "https://www.udemy.com/course/react-guia-definitiva-hooks-router-redux-next-proyectos",
+    },
+];
+---
+
+<section
+    class="w-full md:w-4/5 flex flex-col justify-center items-start gap-12 pt-28"
+    id="certificates"
+>
+    <h3
+        class="w-full inline-flex flex-row justify-center md:justify-start text-4xl items-center gap-4"
+    >
+        <CertificateIcon
+            class="w-20 h-20 hidden sm-mobile:inline-block"
+        />Certificados
+    </h3>
+    <div class="w-full flex flex-col justify-center items-center gap-14">
+        {
+            courses.map((course) => {
+                return <Certificate course={course} />;
+            })
+        }
+    </div>
+</section>
