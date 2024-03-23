@@ -12,24 +12,24 @@ const LINKEDIN_PROFILE_LINK = "https://www.linkedin.com/in/cguanipa/";
 
 <section
     id="home"
-    class="w-full lg:w-4/5 flex flex-col justify-center items-start gap-4 pt-20 px-2 md:px-12"
+    class="flex flex-col items-start justify-center w-full gap-4 px-2 pt-20 lg:w-4/5 md:px-12"
 >
     <div
-        class="flex flex-col-reverse lg:flex-row justify-center items-center gap-8"
+        class="flex flex-col-reverse items-center justify-center gap-8 lg:flex-row"
     >
-        <div class="w-full gap-4 flex flex-col justify-center items-center">
+        <div class="flex flex-col items-center justify-center w-full gap-4">
             <h2
-                class="w-full text-4xl sm-mobile:text-5xl md:text-5xl text-center lg:text-left"
+                class="w-full text-4xl text-center sm-mobile:text-5xl md:text-5xl lg:text-left"
             >
                 Hola, soy Carlos
             </h2>
             <h3
-                class="w-full text-xl sm-mobile:text-3xl md:text-3xl text-center lg:text-left"
+                class="w-full text-xl text-center sm-mobile:text-3xl md:text-3xl lg:text-left"
             >
                 Frontend Developer <br />React & NextJS
             </h3>
             <p
-                class="w-full sm:w-3/4 md:w-full hidden sm-mobile:block text-xl text-center lg:text-left"
+                class="hidden w-full text-xl text-center sm:w-3/4 md:w-full sm-mobile:block lg:text-left"
             >
                 Constantemente investigando sobre las tecnologías que se van
                 añadiendo al ecosistema de Javascript y el desarrollo web en
@@ -37,11 +37,11 @@ const LINKEDIN_PROFILE_LINK = "https://www.linkedin.com/in/cguanipa/";
             </p>
         </div>
         <div
-            class="w-3/4 sm:w-1/2 flex flex-col justify-center items-center h-full"
+            class="flex flex-col items-center justify-center w-3/4 h-full sm:w-1/2"
         >
             <Image
                 src={"https://avatars.githubusercontent.com/u/78671291?v=4"}
-                class="rounded-full p-0 sm-mobile:p-4 ring-8 ring-indigo-300"
+                class="p-0 rounded-full sm-mobile:p-4 ring-8 ring-indigo-300"
                 alt={"profile-picture"}
                 loading={"lazy"}
                 width={250}
@@ -50,10 +50,10 @@ const LINKEDIN_PROFILE_LINK = "https://www.linkedin.com/in/cguanipa/";
         </div>
     </div>
     <div
-        class="w-full lg:w-1/2 flex flex-col justify-center items-center gap-4"
+        class="flex flex-col items-center justify-center w-full gap-4 lg:w-1/2"
     >
         <div
-            class="w-full flex-nowrap lg:flex-wrap flex flex-row justify-center lg:justify-start items-center gap-4 text-indigo-400"
+            class="flex flex-row items-center justify-center w-full gap-4 text-indigo-400 flex-nowrap lg:flex-wrap lg:justify-start"
         >
             <Link href={MAILTO_LINK}>
                 <MailForward slot="icon" class="w-6 h-6" />

@@ -92,22 +92,22 @@ const Header = () => {
 
     return (
         <header
-            className="fixed top-0 z-10 flex w-full flex-row items-center justify-center px-10 py-2 mobile:px-0 mobile:py-0"
+            className="fixed top-0 z-10 flex flex-row items-center justify-center w-full px-10 py-2 mobile:px-0 mobile:py-0"
         >
-            <button className="absolute top-14 right-10 z-10 block sm:hidden rounded-full bg-slate-400/30 backdrop-blur p-4 focus:outline-none" onClick={(e) => {
+            <button className="absolute z-10 block p-4 rounded-full top-14 right-10 sm:hidden bg-slate-400/30 backdrop-blur focus:outline-none" onClick={(e) => {
                 e.preventDefault()
                 navbarButtonOnClickHandler()
             }}>
                 {isOpen ? <CloseIcon /> : <HamburguerIcon />}
             </button>
             <nav
-                className="bg-white/40 backdrop-blur shadow-lg ring-1 ring-white/10 w-max hidden sm:flex flex-row justify-center items-center gap-8 font-bold rounded-md py-4 px-8"
+                className="flex-row items-center justify-center hidden gap-8 px-8 py-4 font-bold rounded-md shadow-lg bg-white/40 backdrop-blur ring-1 ring-white/10 w-max sm:flex"
             >
                 {
                     navItems.map((link, linkIdx) => (
                         <a
                             key={linkIdx}
-                            className="uppercase transition w-max text-sm"
+                            className="text-sm uppercase transition w-max"
                             aria-label={link.label}
                             href={link.url}
                         >
@@ -124,7 +124,7 @@ const Header = () => {
                         <li key={linkIdx}>
                             <span
                                 role="link"
-                                className="w-full uppercase font-bold transition text-lg text-left cursor-pointer"
+                                className="w-full text-lg font-bold text-left uppercase transition cursor-pointer"
                                 aria-label={link.label}
                                 onClick={() => {
                                     navbarButtonOnClickHandler()

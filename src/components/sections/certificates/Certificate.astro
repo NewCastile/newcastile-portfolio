@@ -20,26 +20,26 @@ const {
 ---
 
 <article
-    class="w-full flex flex-col justify-center items-center gap-4 lg:grid lg:grid-cols-2 lg:gap-8"
+    class="flex flex-col items-center justify-center w-full gap-4 lg:grid lg:grid-cols-2 lg:gap-8"
 >
-    <div class="w-full flex h-full flex-col justify-between items-start gap-4">
-        <div class="flex flex-col justify-start items-center gap-4 lg:gap-8">
+    <div class="flex flex-col items-start justify-between w-full h-full gap-4">
+        <div class="flex flex-col items-center justify-start gap-4 lg:gap-8">
             <h4 id="course-title" class="text-2xl">
                 {name}
             </h4>
-            <div class="w-full flex flex-col justify-center items-center gap-6">
+            <div class="flex flex-col items-center justify-center w-full gap-6">
                 <span
-                    class="font-bold text-xl text-left w-full underline decoration-4 underline-offset-4 decoration-indigo-400"
+                    class="w-full text-xl font-bold text-left underline decoration-4 underline-offset-4 decoration-indigo-400"
                 >
                     Instruído por:
                 </span>
                 <div
-                    class="flex flex-row flex-wrap w-full justify-center items-center gap-2"
+                    class="flex flex-row flex-wrap items-center justify-center w-full gap-2"
                 >
                     {
                         teachers.map((teacher) => {
                             return (
-                                <span class="font-medium text-xl text-left w-full">
+                                <span class="w-full text-xl font-medium text-left">
                                     {teacher}
                                 </span>
                             );

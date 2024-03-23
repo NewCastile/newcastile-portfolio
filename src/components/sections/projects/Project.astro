@@ -28,19 +28,19 @@ interface Props {
 const { project } = Astro.props;
 ---
 
-<article class="flex flex-col md:flex-row justify-center items-center gap-12">
+<article class="flex flex-col items-center justify-center gap-12 md:flex-row">
     <div
-        class="relative group hidden lg:flex flex-col justify-center items-center w-1/2 h-full rounded-xl"
+        class="relative flex-col items-center justify-center hidden w-1/2 h-full group lg:flex rounded-xl"
     >
         <div
-            class="absolute w-full h-full hidden group-hover:flex flex-col justify-center items-center group-hover:animate-fade-in p-2 group-hover:bg-slate-800/80 backdrop-blur rounded-xl"
+            class="absolute flex-col items-center justify-center hidden w-full h-full p-2 group-hover:flex group-hover:animate-fade-in group-hover:bg-slate-800/80 backdrop-blur rounded-xl"
         >
             <a
                 target="_blank"
                 href={`${project.web ? project.web : project.repo}`}
             >
                 <ExternalLink
-                    class="size-16 stroke-2 stroke-white"
+                    class="stroke-2 size-16 stroke-white"
                     name="icon"
                 />
             </a>
@@ -48,14 +48,14 @@ const { project } = Astro.props;
         <Image
             src={project.image}
             alt={"project-image"}
-            class="hidden lg:block w-full h-full rounded-xl"
+            class="hidden w-full h-full lg:block rounded-xl"
         />
     </div>
-    <div class="w-full lg:w-1/2 flex flex-col justify-center items-start gap-4">
-        <h4 class="w-full sm:w-max text-center sm:text-left text-2xl">
+    <div class="flex flex-col items-start justify-center w-full gap-4 lg:w-1/2">
+        <h4 class="w-full text-2xl text-center sm:w-max sm:text-left">
             {project.name}
         </h4>
-        <div class="hidden sm-mobile:flex lg:hidden flex-row flex-wrap gap-4">
+        <div class="flex-row flex-wrap hidden gap-4 sm-mobile:flex lg:hidden">
             {
                 project.technologies.map((technology) => {
                     return <TechnologyBadge technology={technology} />;
@@ -63,17 +63,17 @@ const { project } = Astro.props;
             }
         </div>
         <div
-            class="relative group flex lg:hidden flex-col justify-center items-center w-full lg:w-1/2 h-full rounded-xl"
+            class="relative flex flex-col items-center justify-center w-full h-full group lg:hidden lg:w-1/2 rounded-xl"
         >
             <div
-                class="absolute w-full h-full hidden group-hover:flex flex-col justify-center group-hover:animate-fade-in items-center p-2 group-hover:bg-slate-800/80 backdrop-blur rounded-xl"
+                class="absolute flex-col items-center justify-center hidden w-full h-full p-2 group-hover:flex group-hover:animate-fade-in group-hover:bg-slate-800/80 backdrop-blur rounded-xl"
             >
                 <a
                     target="_blank"
                     href={`${project.web ? project.web : project.repo}`}
                 >
                     <ExternalLink
-                        class="size-16 stroke-2 stroke-white"
+                        class="stroke-2 size-16 stroke-white"
                         name="icon"
                     />
                 </a>
@@ -81,10 +81,10 @@ const { project } = Astro.props;
             <Image
                 src={project.image}
                 alt={"project-image"}
-                class="block lg:hidden w-full h-full rounded-xl"
+                class="block w-full h-full lg:hidden rounded-xl"
             />
         </div>
-        <div class="hidden lg:flex flex-row flex-wrap gap-4">
+        <div class="flex-row flex-wrap hidden gap-4 lg:flex">
             {
                 project.technologies.map((technology) => {
                     return <TechnologyBadge technology={technology} />;

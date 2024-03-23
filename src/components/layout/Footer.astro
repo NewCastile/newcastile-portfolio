@@ -8,25 +8,25 @@ const LINKEDIN_PROFILE_LINK = "https://www.linkedin.com/in/cguanipa/";
 ---
 
 <footer
-    class="py-14 px-8 lg:px-0 mx-auto w-full md:w-4/5 lg:w-3/4 desktop:w-1/2 flex flex-col justify-center items-center font-bold text-xl"
+    class="flex flex-col items-center justify-center w-full px-8 mx-auto text-xl font-bold py-14 lg:px-0 md:w-4/5 lg:w-3/4 desktop:w-1/2"
 >
-    <div class="flex flex-col lg:flex-row justify-between items-center w-full">
+    <div class="flex flex-col items-center justify-between w-full lg:flex-row">
         <span
-            class="w-full hidden lg:inline-flex flex-row justify-end lg:justify-center items-center gap-4"
+            class="flex-row items-center justify-end hidden w-full gap-4 lg:inline-flex lg:justify-center"
         >
             Hecho por
             <a
                 role="link"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="inline-flex flex-row justify-center items-center gap-2 py-4"
+                class="inline-flex flex-row items-center justify-center gap-2 py-4"
                 href={GITHUB_PROFILE_LINK}
             >
-                <GithubIcon class="w-6 h-6 inline-block" name="icon" /> NewCastile
+                <GithubIcon class="inline-block w-6 h-6" name="icon" /> NewCastile
             </a>
         </span>
         <div
-            class="w-full flex flex-col sm-mobile:flex-row justify-center lg:justify-center items-center gap-4 lg:gap-10"
+            class="flex flex-col items-center justify-center w-full gap-4 sm:flex-row lg:justify-center lg:gap-10"
         >
             <a
                 class="px-2 py-4"
@@ -34,26 +34,25 @@ const LINKEDIN_PROFILE_LINK = "https://www.linkedin.com/in/cguanipa/";
                 rel="noopener noreferrer"
                 href={MAILTO_LINK}
             >
-                <MailForwardIcon class="w-10 h-10 inline-block" />
-                Contáctame
+                <MailForwardIcon class="inline-block w-10 h-10" />
+                Github
             </a>
             <a
                 class="px-2 py-4"
                 href={LINKEDIN_PROFILE_LINK}
                 target="_blank"
-                '
                 rel="noopener noreferrer"
             >
-                <LinkedInIcon class="w-6 h-6 inline-block" />
+                <LinkedInIcon class="inline-block w-6 h-6" />
                 LinkedIn
             </a>
             <a
-                class="block lg:hidden px-2 py-4"
+                class="block px-2 py-4 lg:hidden"
                 href={GITHUB_PROFILE_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
             >
-                <GithubIcon class="w-6 h-6 inline-block" />
+                <GithubIcon class="inline-block w-6 h-6" />
                 Github
             </a>
         </div>

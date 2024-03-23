@@ -228,25 +228,25 @@ import Project from "../sections/projects/Project.astro";
 ---
 
 <section
-    class="w-full md:w-11/12 flex flex-col justify-center items-start gap-8 pt-28"
+    class="flex flex-col items-start justify-center w-full gap-8 md:w-11/12 pt-28"
     id="projects"
 >
     <h3
-        class="w-full inline-flex text-4xl flex-row justify-center md:justify-start items-center gap-4"
+        class="inline-flex flex-row items-center justify-center w-full gap-4 text-4xl md:justify-start"
     >
-        <StackIcon class="w-20 h-20 hidden sm-mobile:inline-block" />Proyectos
+        <StackIcon class="hidden w-20 h-20 sm-mobile:inline-block" />Proyectos
     </h3>
-    <div class="flex flex-col justify-center items-center gap-14">
-        <div class="flex flex-col justify-center items-center gap-12">
+    <div class="flex flex-col items-center justify-center gap-14">
+        <div class="flex flex-col items-center justify-center gap-12">
             {
                 projects.map((project) => {
                     return <Project project={project} />;
                 })
             }
         </div>
-        <div class="w-full flex flex-col justify-center items-center gap-5">
-            <h4 class="w-full text-center text-3xl">Lenguajes y frameworks</h4>
-            <ul class="flex flex-col justify-center items-center gap-5">
+        <div class="flex flex-col items-center justify-center w-full gap-5">
+            <h4 class="w-full text-3xl text-center">Lenguajes y frameworks</h4>
+            <ul class="flex flex-col items-center justify-center gap-5">
                 {
                     technologyGroups.map((group) => {
                         return <TechnologyGroup technologyGroup={group} />;

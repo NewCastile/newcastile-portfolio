@@ -24,9 +24,9 @@ const {
 ---
 
 <li
-    class="flex flex-col justify-center items-start sm-mobile:items-center gap-6"
+    class="flex flex-col items-start justify-center gap-6 sm-mobile:items-center"
 >
-    <div class="flex flex-col sm-mobile:flex-row flex-wrap gap-2">
+    <div class="flex flex-col flex-wrap gap-2 sm-mobile:flex-row">
         {
             items.map((item) => {
                 const {
@@ -34,7 +34,7 @@ const {
                     name,
                 } = item;
                 return (
-                    <span class="font-semibold border-indigo-300 border text-gray-500 inline-flex items-center px-6 py-2 rounded-full gap-4 bg-violet-100">
+                    <span class="inline-flex items-center gap-4 px-6 py-2 font-semibold text-gray-500 border border-indigo-300 rounded-full bg-violet-100">
                         <Image
                             width={size}
                             height={size}
