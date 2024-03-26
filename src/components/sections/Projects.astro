@@ -41,7 +41,6 @@ export interface TechnologyGroupItem {
     src: ImageMetadata;
     size: number;
     background?: boolean;
-    backgroundColor?: string;
   };
 }
 
@@ -99,9 +98,8 @@ const projects: Project[] = [
         name: "Remix",
         icon: {
           src: RemixIcon,
-          size: 8,
+          size: 6,
           background: true,
-          backgroundColor: "black",
         },
       },
       { name: "ChakraUI", icon: { src: ChakraIcon, size: 12 } },
