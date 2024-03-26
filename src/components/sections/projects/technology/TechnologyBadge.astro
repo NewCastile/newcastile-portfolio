@@ -8,7 +8,6 @@ interface Technology {
     src: ImageMetadata;
     size: number;
     background?: boolean;
-    backgroundColor?: string;
   };
 }
 
@@ -19,23 +18,32 @@ interface Props {
 const { technology } = Astro.props;
 
 const {
-  icon: { src: TechnologyIcon, size, background, backgroundColor },
+  icon: { src: TechnologyIcon, size, background },
   name,
 } = technology;
-
-const badgeClass = `flex flex-col items-center justify-center p-2 bg-${backgroundColor} rounded-full`;
 ---
 
 <Badge>
   {
-    background && backgroundColor ? (
-      <div class={badgeClass} slot={"icon"}>
-        <Image
-          alt={"techonology-icon"}
-          height={size}
-          src={TechnologyIcon}
-          width={size}
-        />
+    background ? (
+      <div class="flex flex-col justify-center items-center relative size-6">
+        <div
+          class:list={[
+            "flex flex-col items-center justify-center size-4 absolute z-10 rounded-full",
+            {
+              "bg-black": background,
+            },
+          ]}
+          slot={"icon"}
+        >
+          <Image
+            class="z-20"
+            alt={"techonology-icon"}
+            height={size}
+            src={TechnologyIcon}
+            width={size}
+          />
+        </div>
       </div>
     ) : (
       <Image
