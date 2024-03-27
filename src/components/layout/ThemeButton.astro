@@ -1,0 +1,154 @@
+---
+import MoonIcon from "../icons/Moon.astro";
+import SunIcon from "../icons/Sun.astro";
+import DesktopIcon from "../icons/Desktop.astro";
+---
+
+<div
+    class="fixed top-32 right-10 sm:top-0 z-40 flex flex-row items-center justify-start w-max py-2"
+>
+    <div class="relative">
+        <button
+            id="toggle-theme-button"
+            data-dropdown-toggle="themes-menu"
+            class="inline-flex text-inherit font-bold w-max uppercase align-baseline p-4 rounded-md shadow-lg bg-slate-400/30 dark:bg-slate-900/90 backdrop-blur"
+            type="button"
+        >
+            <SunIcon id="light" data-theme-button-icon class="opacity-100" />
+            <MoonIcon id="dark" data-theme-button-icon class="opacity-100" />
+            <DesktopIcon
+                id="system"
+                data-theme-button-icon
+                class="opacity-100"
+            />
+        </button>
+        <div
+            id="themes-menu"
+            class="hidden bg-slate-400/30 dark:bg-slate-900/90 rounded-lg shadow w-40 backdrop-blur-xl absolute top-20 right-0"
+        >
+            <ul
+                class="py-2 text-sm dark:text-gray-200"
+                aria-labelledby="theme-button"
+            >
+                <li>
+                    <button
+                        data-toggle-theme-button
+                        data-theme="light"
+                        class="font-bold text-lg text-right w-full px-4 py-2 hover:underline hover:decoration-indigo-400 hover:decoration-4 dark:hover:decoration-pink-500 dark:hover:decoration4 hover:bg-gray-100 dark:hover:bg-slate-800"
+                    >
+                        Claro
+                    </button>
+                </li>
+                <li>
+                    <button
+                        data-toggle-theme-button
+                        data-theme="dark"
+                        class="font-bold text-lg text-right w-full px-4 py-2 hover:underline hover:decoration-indigo-400 hover:decoration-4 dark:hover:decoration-pink-500 dark:hover:decoration4 hover:bg-gray-100 dark:hover:bg-slate-800"
+                    >
+                        Oscuro
+                    </button>
+                </li>
+                <li>
+                    <button
+                        data-toggle-theme-button="system"
+                        data-theme="system"
+                        class="font-bold text-lg text-right w-full items-baseline px-4 py-2 hover:underline hover:decoration-indigo-400 hover:decoration-4 dark:hover:decoration-pink-500 dark:hover:decoration4 hover:bg-gray-100 dark:hover:bg-slate-800 dark:hover:text-white"
+                    >
+                        Sistema
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<style>
+    #themes-menu.open {
+        display: block;
+        animation: scale-up-center 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+            both;
+    }
+
+    @keyframes scale-up-center {
+        from {
+            transform: scale(0.8);
+            opacity: 0;
+        }
+
+        to {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+</style>
+<script is:inline>
+    const getTheme = () => {
+        if (typeof localStorage !== "undefined") {
+            return localStorage.getItem("theme") ?? "system";
+        }
+
+        return window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light";
+    };
+
+    const theme = getTheme();
+    const themeMenuButton = document.getElementById("toggle-theme-button");
+    const themeMenuButtonIcons = document.querySelectorAll(
+        "[data-theme-button-icon]",
+    );
+    const themesMenu = document.getElementById("themes-menu");
+    const toggleThemeButtons = document.querySelectorAll(
+        "[data-toggle-theme-button]",
+    );
+
+    const matchMedia = window.matchMedia("(prefers-color-scheme: dark)");
+
+    const toggleMenuVisibility = () => {
+        themesMenu.classList.toggle("hidden");
+        themesMenu.classList.toggle("open");
+    };
+
+    const updateThemeButtonContent = (theme) => {
+        themeMenuButtonIcons.forEach((icon) => {
+            const id = icon.id;
+            icon.classList.toggle("block", id === theme);
+            icon.classList.toggle("hidden", id !== theme);
+        });
+    };
+
+    const handleToggleMenuButtonClick = () => {
+        toggleMenuVisibility();
+    };
+
+    themeMenuButton.addEventListener("click", handleToggleMenuButtonClick);
+
+    const updateTheme = (theme) => {
+        const element = document.documentElement;
+        element.classList.toggle("dark", theme !== "light");
+
+        localStorage.setItem("theme", theme);
+        updateThemeButtonContent(theme);
+    };
+
+    updateTheme(theme);
+
+    const handleToggleThemeButtonClick = (theme) => {
+        updateTheme(theme);
+    };
+
+    toggleThemeButtons.forEach((button) => {
+        const theme = button.getAttribute("data-theme");
+        button.addEventListener("click", () => {
+            handleToggleThemeButtonClick(theme ?? "system");
+            toggleMenuVisibility();
+        });
+    });
+
+    matchMedia.addEventListener("change", () => {
+        console.log("media update");
+        const theme = getTheme();
+        console.log(theme);
+        updateTheme(theme);
+    });
+</script>
