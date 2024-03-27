@@ -4,15 +4,19 @@ import Home from "../components/sections/Home.astro";
 import Projects from "../components/sections/Projects.astro";
 import Certificates from "../components/sections/Certificates.astro";
 import AboutMe from "../components/sections/AboutMe.astro";
+import Footer from "../components/layout/Footer.astro";
 ---
 
 <Layout title={"Portfolio de NewCastile - Desarrollador Frontend"}>
-	<main
-		class={"mx-auto flex flex-col items-center justify-center bg-slate-400/30 p-10 backdrop-blur-sm md:w-4/5 lg:w-3/4 lg:px-20"}
-	>
-		<Home />
-		<Projects />
-		<Certificates />
-		<AboutMe />
+	<main class="w-full bg-none dark:bg-slate-950/50">
+		<div
+			class={"mx-auto flex flex-col items-center justify-center bg-slate-400/30 p-10 backdrop-blur-sm dark:bg-slate-900/90 md:w-4/5 lg:w-3/4 lg:px-20"}
+		>
+			<Home />
+			<Projects />
+			<Certificates />
+			<AboutMe />
+			<Footer />
+		</div>
 	</main>
 </Layout>

@@ -3,7 +3,7 @@ import { ViewTransitions } from "astro:transitions";
 import "@fontsource-variable/rubik";
 
 import Header from "../components/layout/Header";
-import Footer from "../components/layout/Footer.astro";
+import ThemeButton from "../components/layout/ThemeButton.astro";
 
 interface Props {
 	title: string;
@@ -23,10 +23,10 @@ const { title } = Astro.props;
 		<title>{title}</title>
 		<ViewTransitions />
 	</head>
-	<body>
+	<body class="text-zinc-800 dark:text-gray-400">
+		<ThemeButton />
 		<Header client:load />
 		<slot />
-		<Footer />
 		<style is:global>
 			:root {
 				--accent: 136, 58, 234;
@@ -48,7 +48,6 @@ const { title } = Astro.props;
 				-o-background-size: cover;
 				overflow-x: hidden;
 				background-size: cover;
-				color: #252525;
 				font-size: 13px;
 				line-height: 1.6;
 				height: 100%;

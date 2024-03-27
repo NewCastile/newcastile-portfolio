@@ -2,8 +2,10 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
 const defaultColors = require("tailwindcss/colors")
 const plugin = require('tailwindcss/plugin')
+
 export default {
 	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
+	darkMode: "class",
 	theme: {
 		extend: {
 			screens: {
@@ -38,6 +40,7 @@ export default {
 		addComponents({
 			'.highlight': {
 				color: theme('colors.rose.600'),
+				'@apply dark:text-pink-500': {},
 			}
 		})
 	})],

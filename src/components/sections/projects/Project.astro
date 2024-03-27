@@ -35,7 +35,7 @@ const { project } = Astro.props;
         class={"group relative hidden h-full w-1/2 flex-col items-center justify-center rounded-xl lg:flex"}
     >
         <div
-            class={"absolute hidden size-full flex-col items-center justify-center rounded-xl p-2 backdrop-blur group-hover:flex group-hover:animate-fade-in group-hover:bg-slate-800/80"}
+            class={"absolute hidden size-full flex-col items-center justify-center rounded-xl p-2 backdrop-blur group-hover:flex group-hover:animate-fade-in group-hover:bg-slate-800/80 dark:group-hover:bg-slate-400/80"}
         >
             <a
                 href={`${project.web ? project.web : project.repo}`}
@@ -43,7 +43,7 @@ const { project } = Astro.props;
                 target={"_blank"}
             >
                 <ExternalLink
-                    class={"size-16 stroke-white stroke-2"}
+                    class={"size-16 stroke-white stroke-2 dark:stroke-slate-800"}
                     name={"icon"}
                 />
             </a>
@@ -57,7 +57,9 @@ const { project } = Astro.props;
     <div
         class={"flex w-full flex-col items-start justify-center gap-4 lg:w-1/2"}
     >
-        <h4 class={"w-full text-center text-2xl sm:w-max sm:text-left"}>
+        <h4
+            class={"w-full text-center text-2xl dark:text-yellow-200 sm:w-max sm:text-left"}
+        >
             {project.name}
         </h4>
         <div class={"hidden flex-row flex-wrap gap-4 sm-mobile:flex lg:hidden"}>
@@ -71,7 +73,7 @@ const { project } = Astro.props;
             class={"group relative flex size-full flex-col items-center justify-center rounded-xl lg:hidden lg:w-1/2"}
         >
             <div
-                class={"absolute hidden size-full flex-col items-center justify-center rounded-xl p-2 backdrop-blur group-hover:flex group-hover:animate-fade-in group-hover:bg-slate-800/80"}
+                class={"absolute hidden size-full flex-col items-center justify-center rounded-xl p-2 backdrop-blur group-hover:flex group-hover:animate-fade-in group-hover:bg-slate-800/80 dark:group-hover:bg-slate-400/80"}
             >
                 <a
                     href={`${project.web ? project.web : project.repo}`}
@@ -79,7 +81,7 @@ const { project } = Astro.props;
                     target={"_blank"}
                 >
                     <ExternalLink
-                        class={"size-16 stroke-white stroke-2"}
+                        class={"size-16 stroke-white stroke-2 dark:stroke-slate-800"}
                         name={"icon"}
                     />
                 </a>
