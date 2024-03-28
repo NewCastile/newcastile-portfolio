@@ -121,7 +121,10 @@ import DesktopIcon from "../icons/Desktop.astro";
         toggleMenuVisibility();
     };
 
-    themeMenuButton.addEventListener("click", handleToggleMenuButtonClick);
+    themeMenuButton.addEventListener("click", (event) => {
+        event.stopPropagation();
+        handleToggleMenuButtonClick();
+    });
 
     const updateTheme = (theme) => {
         const element = document.documentElement;
@@ -139,7 +142,8 @@ import DesktopIcon from "../icons/Desktop.astro";
 
     toggleThemeButtons.forEach((button) => {
         const theme = button.getAttribute("data-theme");
-        button.addEventListener("click", () => {
+        button.addEventListener("click", (event) => {
+            event.stopPropagation();
             handleToggleThemeButtonClick(theme ?? "system");
             toggleMenuVisibility();
         });
@@ -148,5 +152,19 @@ import DesktopIcon from "../icons/Desktop.astro";
     matchMedia.addEventListener("change", () => {
         const theme = getTheme();
         updateTheme(theme);
+    });
+
+    const onClickOutside = (selector, cb) => {
+        document.addEventListener("click", (event) => {
+            const selectedElement = document.querySelector(selector);
+            const targetElement = event.currentTarget;
+            if (!selectedElement.contains(targetElement) && targetElement) cb();
+        });
+    };
+
+    // Using
+    onClickOutside("#themes-menu", () => {
+        themesMenu.classList.add("hidden");
+        themesMenu.classList.remove("open");
     });
 </script>
