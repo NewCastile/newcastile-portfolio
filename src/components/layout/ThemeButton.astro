@@ -146,9 +146,7 @@ import DesktopIcon from "../icons/Desktop.astro";
     });
 
     matchMedia.addEventListener("change", () => {
-        console.log("media update");
         const theme = getTheme();
-        console.log(theme);
         updateTheme(theme);
     });
 </script>
