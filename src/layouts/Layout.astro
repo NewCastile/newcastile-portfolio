@@ -2,7 +2,7 @@
 import { ViewTransitions } from "astro:transitions";
 import "@fontsource-variable/rubik";
 
-import Header from "../components/layout/Header";
+import Header from "../components/layout/Header.astro";
 import ThemeButton from "../components/layout/ThemeButton.astro";
 
 interface Props {
@@ -25,7 +25,7 @@ const { title } = Astro.props;
 	</head>
 	<body class="text-zinc-800 dark:text-gray-400">
 		<ThemeButton />
-		<Header client:load />
+		<Header />
 		<slot />
 		<style is:global>
 			:root {
