@@ -1,4 +1,9 @@
 ---
+import {
+    GITHUB_PROFILE_LINK,
+    MAILTO_LINK,
+    LINKEDIN_PROFILE_LINK,
+} from "../../i18n/ui";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 import GithubIcon from "../icons/Github.astro";
 import LinkedInIcon from "../icons/LinkedIn.astro";
@@ -6,10 +11,6 @@ import MailForwardIcon from "../icons/MailForward.astro";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-
-const GITHUB_PROFILE_LINK = "https://github.com/NewCastile";
-const MAILTO_LINK = "mailto:carlosaguanipa1@gmail.com";
-const LINKEDIN_PROFILE_LINK = "https://www.linkedin.com/in/cguanipa/";
 ---
 
 <footer

@@ -5,11 +5,12 @@ import MailForward from "../icons/MailForward.astro";
 import GithubIcon from "../icons/Github.astro";
 import { Image } from "astro:assets";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
-import { routes } from "../../i18n/ui";
-
-const GITHUB_PROFILE_LINK = "https://github.com/NewCastile";
-const MAILTO_LINK = "mailto:carlosaguanipa1@gmail.com";
-const LINKEDIN_PROFILE_LINK = "https://www.linkedin.com/in/cguanipa/";
+import {
+    GITHUB_PROFILE_LINK,
+    LINKEDIN_PROFILE_LINK,
+    MAILTO_LINK,
+    routes,
+} from "../../i18n/ui";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
