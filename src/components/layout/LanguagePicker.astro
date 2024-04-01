@@ -51,7 +51,8 @@ const LOCALES = Object.entries(languages).map((locale) => {
                             )}
                             class="opacity-100 inline-flex gap-2 items-center uppercase"
                         >
-                            {label} <span>{flag}</span>
+                            {label}
+                            <span>{flag}</span>
                         </span>
                     );
                 })
@@ -79,9 +80,10 @@ const LOCALES = Object.entries(languages).map((locale) => {
                                         `/${href ? href : ""}`,
                                         lang,
                                     )}
-                                    class="inline-flex items-center gap-2 w-full px-4 py-2 hover:bg-gray-100 hover:underline hover:decoration-indigo-400 hover:decoration-4 dark:hover:bg-slate-800 dark:hover:decoration-pink-500 dark:hover:decoration-4 uppercase text-left text-lg font-bold"
+                                    class="inline-flex items-center gap-2 w-full px-4 py-2 group hover:bg-gray-100 hover:underline hover:underline-offset-4 hover:decoration-indigo-400 hover:decoration-4 dark:hover:bg-slate-800 dark:hover:decoration-pink-500 dark:hover:decoration-4 uppercase text-left text-lg font-bold"
                                 >
-                                    {label} <span>{flag}</span>
+                                    {label}
+                                    <span>{flag}</span>
                                 </span>
                             </li>
                         );
