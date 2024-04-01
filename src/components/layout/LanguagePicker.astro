@@ -1,13 +1,10 @@
 ---
-import astroConfig from "../../../astro.config.mjs";
 import { languages } from "../../i18n/ui";
 import {
     getRouteFromUrl,
     getLangFromUrl,
     useTranslatedPath,
 } from "../../i18n/utils";
-
-const { i18n } = astroConfig;
 
 const currentLocale = getLangFromUrl(Astro.url);
 const route = getRouteFromUrl(Astro.url);
