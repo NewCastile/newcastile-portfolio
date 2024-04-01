@@ -1,0 +1,206 @@
+---
+import astroConfig from "../../../astro.config.mjs";
+import { languages } from "../../i18n/ui";
+import {
+    getRouteFromUrl,
+    getLangFromUrl,
+    useTranslatedPath,
+} from "../../i18n/utils";
+
+const { i18n } = astroConfig;
+
+const currentLocale = getLangFromUrl(Astro.url);
+const route = getRouteFromUrl(Astro.url);
+const translatePath = useTranslatedPath(currentLocale);
+
+const LOCALES = Object.entries(languages).map((locale) => {
+    const [_, { code, label, flag }] = locale;
+
+    return {
+        lang: code,
+        label,
+        flag,
+        href: route,
+        isCurrent: code === currentLocale ? 1 : 0,
+    };
+});
+---
+
+<div
+    class="fixed left-10 top-14 z-40 flex w-max flex-row items-center justify-start py-2 sm:top-0"
+>
+    <div class="relative">
+        <button
+            id="toggle-locale-menu-button"
+            data-dropdown-toggle="locales-menu"
+            class="inline-flex w-max rounded-md bg-slate-400/30 p-4 align-baseline font-bold uppercase text-inherit shadow-lg backdrop-blur dark:bg-slate-900/90"
+            type="button"
+        >
+            {
+                LOCALES.map((locale) => {
+                    const { lang, href, isCurrent, label, flag } = locale;
+
+                    return (
+                        <span
+                            id={lang}
+                            data-locale-option-content
+                            data-is-default-locale={isCurrent}
+                            data-href={translatePath(
+                                `/${href ? href : ""}`,
+                                lang,
+                            )}
+                            class="opacity-100 inline-flex gap-2 items-center uppercase"
+                        >
+                            {label} <span>{flag}</span>
+                        </span>
+                    );
+                })
+            }
+        </button>
+        <div
+            id="locales-menu"
+            class="absolute left-0 top-20 hidden w-28 rounded-lg bg-slate-400/30 shadow backdrop-blur-xl dark:bg-slate-900/90"
+        >
+            <ul
+                class="py-2 text-sm dark:text-gray-200"
+                aria-labelledby="toggle-locale-menu-button"
+            >
+                {
+                    LOCALES.map((locale) => {
+                        const { lang, href, isCurrent, label, flag } = locale;
+                        return (
+                            <li class="w-full">
+                                <span
+                                    role="link"
+                                    data-toggle-locale-button
+                                    data-is-default-locale={isCurrent}
+                                    data-locale-code={lang}
+                                    data-href={translatePath(
+                                        `/${href ? href : ""}`,
+                                        lang,
+                                    )}
+                                    class="inline-flex items-center gap-2 w-full px-4 py-2 hover:bg-gray-100 hover:underline hover:decoration-indigo-400 hover:decoration-4 dark:hover:bg-slate-800 dark:hover:decoration-pink-500 dark:hover:decoration-4 uppercase text-left text-lg font-bold"
+                                >
+                                    {label} <span>{flag}</span>
+                                </span>
+                            </li>
+                        );
+                    })
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+
+<style>
+    #locales-menu.open {
+        display: block;
+        animation: scale-up-center 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+            both;
+    }
+
+    @keyframes scale-up-center {
+        from {
+            transform: scale(0.8);
+            opacity: 0;
+        }
+
+        to {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+</style>
+<script is:inline>
+    const toggleLocalesDropwdownButton = document.getElementById(
+        "toggle-locale-menu-button",
+    );
+
+    const localeDropdownMenu = document.getElementById("locales-menu");
+    const toggleLocaleButtonContent = document.querySelectorAll(
+        "[data-locale-option-content]",
+    );
+
+    const toggleLocaleButtons = document.querySelectorAll(
+        "[data-toggle-locale-button]",
+    );
+
+    const getDefaultLocale = () => {
+        return Array.from(toggleLocaleButtonContent)
+            .map((element) => {
+                const isCurrent = element.getAttribute(
+                    "data-is-default-locale",
+                );
+                const href = element.getAttribute("data-href");
+                const code = element.getAttribute("id");
+                if (typeof isCurrent === "string")
+                    return { href, code, isCurrent: Number(isCurrent) };
+                if (typeof isCurrent === "number")
+                    return { href, code, isCurrent };
+            })
+            .reduce((acc, curr) => {
+                return acc.isCurrent ? acc : curr;
+            });
+    };
+
+    const defaultLocale = getDefaultLocale();
+
+    const toggleLocaleMenuVisibility = () => {
+        localeDropdownMenu.classList.toggle("hidden");
+        localeDropdownMenu.classList.toggle("open");
+    };
+
+    const updateLocaleButtonContent = (locale) => {
+        toggleLocaleButtonContent.forEach((element) => {
+            const id = element.id;
+            element.classList.toggle("inline-flex", id === locale.code);
+            element.classList.toggle("hidden", id !== locale.code);
+        });
+    };
+
+    const handleLocaleMenuButtonClick = () => {
+        toggleLocaleMenuVisibility();
+    };
+
+    toggleLocalesDropwdownButton.addEventListener("click", (event) => {
+        event.stopPropagation();
+        handleLocaleMenuButtonClick();
+    });
+
+    const updateLocale = (locale) => {
+        updateLocaleButtonContent(locale);
+    };
+
+    updateLocale(defaultLocale);
+
+    const handleToggleLocaleButton = (locale, href) => {
+        updateLocale(locale);
+        window.location = href;
+    };
+
+    toggleLocaleButtons.forEach((button) => {
+        const code = button.getAttribute("data-locale-code");
+        const href = button.getAttribute("data-href");
+        const isCurrent = button.getAttribute("data-is-default-locale");
+        const locale = { code, href, isCurrent };
+        button.addEventListener("click", (event) => {
+            event.stopPropagation();
+            handleToggleLocaleButton(locale, href);
+            toggleLocaleMenuVisibility();
+        });
+    });
+
+    const localeMenuOnOutsideClick = (selector, cb) => {
+        document.addEventListener("click", (event) => {
+            const selectedElement = document.querySelector(selector);
+            const targetElement = event.currentTarget;
+            if (!selectedElement.contains(targetElement) && targetElement) cb();
+        });
+    };
+
+    // Using
+    localeMenuOnOutsideClick("#locales-menu", () => {
+        localeDropdownMenu.classList.add("hidden");
+        localeDropdownMenu.classList.remove("open");
+    });
+</script>
