@@ -95,11 +95,11 @@ export const technologyGroups: Record<string, TechnologyGroup[]> = {
                     icon: { src: CSSIcon, size: 24 },
                 },
                 {
-                    name: "Javascript",
+                    name: "JavaScript",
                     icon: { src: JavascriptIcon, size: 24 },
                 },
                 {
-                    name: "Typescript",
+                    name: "TypeScript",
                     icon: { src: TypescriptIcon, size: 24 },
                 },
             ],
@@ -140,11 +140,11 @@ export const technologyGroups: Record<string, TechnologyGroup[]> = {
                     icon: { src: CSSIcon, size: 24 },
                 },
                 {
-                    name: "Javascript",
+                    name: "JavaScript",
                     icon: { src: JavascriptIcon, size: 24 },
                 },
                 {
-                    name: "Typescript",
+                    name: "TypeScript",
                     icon: { src: TypescriptIcon, size: 24 },
                 },
             ],
@@ -175,7 +175,7 @@ export const technologyGroups: Record<string, TechnologyGroup[]> = {
 }
 
 export const technologies: Record<string, TechnologyGroupItem> = {
-    typescript: { name: "Typescript", icon: { src: TypescriptIcon, size: 12 } },
+    typescript: { name: "TypeScript", icon: { src: TypescriptIcon, size: 12 } },
     nextjs: { name: "NextJS", icon: { src: NextIcon, size: 12 } },
     supabase: { name: "Supabase", icon: { src: SupabaseIcon, size: 12 } },
     tailwindcss: { name: "TailwindCSS", icon: { src: TailwindIcon, size: 12 } },
@@ -200,9 +200,9 @@ export const projects: Record<string, Project[]> = {
         {
             name: "My Multi-Twitch",
             image: myMultiTwitchImg,
-            description: `Multi-stream watch app. User <span class="highlight">can 
-                log-in with his twitch account</span> to watch the streamers who follows. 
-                User can also look up for other streams by using the
+            description: `Multi-stream app. Users <span class="highlight">can 
+                register with their twitch accounts</span> to watch the streamers they follow. 
+                Users can also look up for other streams by using the
                 <span class="highlight">search bar</span>.`,
             repo: "https://github.com/NewCastile/my-multi-twitch",
             web: "https://my-multi-twitch.vercel.app",
@@ -214,8 +214,8 @@ export const projects: Record<string, Project[]> = {
             image: cloverKingdomImg,
             description: `
             Manga reader where the chapters are grouped by arcs, each arc with
-            its corresponding description giving  
-            <span class="highlight">the oportunity to download the chapters</span>.`,
+            its corresponding description, giving the oportunity to 
+            <span class="highlight">download the chapters separately</span>.`,
             repo: "https://github.com/NewCastile/clover-kingdom",
             web: "https://clover-kingdom.vercel.app",
             technologies: [technologies.typescript, technologies.nextjs, technologies.chakraui, technologies.mongodb]
@@ -224,9 +224,9 @@ export const projects: Record<string, Project[]> = {
             name: "Weatheria",
             image: weatheriaImg,
             description: `
-            Weather app where the users can look up for the weather on the city
-            they want in the <span class="highlight">search bar</span>.
-            The search bar counts with an <span class="highlight">auto-complete box</span>
+            Weather app where the users can look up for the weather of the city
+            they want by using <span class="highlight">search bar</span>.
+            This bar counts with an <span class="highlight">auto-complete box</span>
             to help the user look up for their city even faster. According 
             to the weather report 
             <span class="highlight">the app color theme will change</span>.`,
@@ -239,10 +239,10 @@ export const projects: Record<string, Project[]> = {
             name: "Typerun",
             image: typerunImg,
             description: `<span class="highlight">Time-against of clock game</span> 
-                where the user must enter a word for each letter of the alphabet.
-                At the end of the test, a log with total time spend and the 
-                <span class="highlight">definitions of each of the words typed
-                and some examples on theme are detailed</span> this using the
+                where the users must type a word for each letter of the alphabet.
+                At the end of the test, a log with the total time spend and the 
+                <span class="highlight">definitions of each of the words entered
+                and some examples</span> of these are detailed, this using the
                 <span class="highlight">Free Dictionary API</span>.`,
             repo: "https://github.com/NewCastile/Typerun",
             web: "https://typerun.vercel.app",
@@ -254,8 +254,8 @@ export const projects: Record<string, Project[]> = {
             description: `
             GIFs search app developed with the
             <span class="highlight">Giphy API</span>. Shows on screen a list of the 
-            most popular GIFs by category <span class="highlight">allowing to search
-            for more by infinite scrolling</span>.`,
+            most popular GIFs by category <span class="highlight">allowing to continue
+            the search by infinite scrolling</span>.`,
             repo: "https://github.com/NewCastile/gophy",
             web: "https://gophy.vercel.app",
             technologies: [technologies.typescript, technologies.react, technologies.vite, technologies.chakraui]
@@ -267,7 +267,7 @@ export const projects: Record<string, Project[]> = {
             Frontend Challenge taken from 
             <span class="highlight">Frontend Mentor</span>. 
             The challenge consist in creating a page for space tourism following all the
-            documentation given incluiding color codes, fonts, and responsive design`,
+            documentation given, incluiding color codes, fonts and responsive design`,
             repo: "https://github.com/NewCastile/space-tourism-challenge",
             web: "https://space-tourism-challenge.vercel.app",
             technologies: [technologies.typescript, technologies.react, technologies.vite, technologies.tailwindcss]
@@ -304,7 +304,7 @@ export const projects: Record<string, Project[]> = {
             image: cloverKingdomImg,
             description: `Lector de manga en donde se agrupan y describen los arcos de 
             cada serie presentada con sus respectivos capítulos <span class="highlight">ofreciendo 
-                la oportunidad de descargarlos</span>.`,
+            la oportunidad de descargarlos</span>.`,
             repo: "https://github.com/NewCastile/clover-kingdom",
             web: "https://clover-kingdom.vercel.app",
             technologies: [technologies.typescript, technologies.nextjs, technologies.chakraui, technologies.mongodb]
@@ -316,7 +316,7 @@ export const projects: Record<string, Project[]> = {
             de la ciudad que desee mediante un <span class="highlight">buscador</span> que 
             cuenta con una <span class="highlight">caja de auto-completado</span>. Según el pronóstico 
             del clima la aplicación <span class="highlight">cambiará 
-                de tema</span>.`,
+            de tema</span>.`,
             repo: "https://github.com/NewCastile/weatheria",
             web: "https://weatheria-newcastile.vercel.app",
             technologies: [technologies.typescript, technologies.remix, technologies.chakraui]
@@ -327,9 +327,10 @@ export const projects: Record<string, Project[]> = {
             image: typerunImg,
             description: `<span class="highlight">Juego contra-reloj</span> 
                 en donde el usuario deberá escribir una palabra por cada letra del abecedario. 
-                Se detallan al final el tiempo total transcurrido 
+                Se detallan al final el 
+                <span class="highlight">tiempo total transcurrido</span>
                 así como las <span class="highlight">deficiones y ejemplos de las palabras 
-                usando la Free Dictionary API.</span>`,
+                </span> usando la <span class="highlight">Free Dictionary API</span>`,
             repo: "https://github.com/NewCastile/Typerun",
             web: "https://typerun.vercel.app",
             technologies: [technologies.typescript, technologies.nextjs, technologies.cypress, technologies.tailwindcss]
@@ -414,7 +415,7 @@ export const about: Record<string, string> = {
             Python pero me pareció muy aburrido. Quería algo más
             <span class="highlight">interactivo</span>, más
             <span class="highlight">visual</span>, fue entonces cuando conocí
-            <span class="highlight">Javascript</span>.
+            <span class="highlight">JavaScript</span>.
         </p>
         <p class="w-full text-center md:text-left">
             Desde entonces me he dedicado a estudiar el lenguaje y su ecosistema
@@ -434,17 +435,17 @@ export const ui: Record<string, Record<string, string>> = {
         "home.charge": "Frontend Developer",
         "home.description": `
             Constantly learning about the new technologies joining the
-            Javascript ecosystem and web development.
+            JavaScript ecosystem and web development.
         `,
         "home.links.companion.mail": "Contact me",
         "home.links.companion.linkedin": "LinkedIn",
         "home.links.companion.github": "Github",
         "projects.header": "Projects",
         "projects.sub-header": "Languages and frameworks",
-        "projects.companion.links.repositorie": "Code",
+        "projects.companion.links.repository": "Code",
         "projects.companion.links.web": "Web",
         "certificates.header": "Certificates",
-        "certificates.companion.teachers": "Dictated by",
+        "certificates.companion.teachers": "Instructors",
         "certificates.companion.link": "Link",
         "about-me.header": "About me",
         "footer.companion.mail": "Contact me",
@@ -463,7 +464,7 @@ export const ui: Record<string, Record<string, string>> = {
         "home.charge": "Desarrollador Frontend",
         "home.description": `
             Constantemente investigando sobre las tecnologías que se van
-            añadiendo al ecosistema de Javascript y el desarrollo web en
+            añadiendo al ecosistema de JavaScript y el desarrollo web en
             general.
         `,
         "home.links.companion.mail": "Contáctame",
@@ -472,7 +473,7 @@ export const ui: Record<string, Record<string, string>> = {
         "projects.companion.links.repository": "Código",
         "projects.companion.links.web": "Web",
         "certificates.header": "Certificados",
-        "certificates.companion.teachers": "Instruído por",
+        "certificates.companion.teachers": "Instructores",
         "certificates.companion.link": "Dirección",
         "about-me.header": "Sobre mí",
         "footer.companion.mail": "Contáctame",
