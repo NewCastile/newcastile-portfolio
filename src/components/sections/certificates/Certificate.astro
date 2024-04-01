@@ -2,6 +2,10 @@
 import { Image } from "astro:assets";
 import Link from "../../shared/Link.astro";
 import LinkIcon from "../../icons/Link.astro";
+import { getLangFromUrl, useTranslations } from "../../../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 interface Course {
     name: string;
@@ -33,7 +37,7 @@ const {
                 <span
                     class={"w-full text-left text-xl font-bold underline decoration-indigo-400 decoration-4 underline-offset-4 dark:decoration-pink-500"}
                 >
-                    Instruído por:
+                    {t("certificates.companion.teachers")}:
                 </span>
                 <div
                     class={"flex w-full flex-row flex-wrap items-center justify-center gap-2"}
@@ -57,7 +61,7 @@ const {
         <span class={"hidden lg:block"}>
             <Link href={link}>
                 <LinkIcon />
-                Dirección
+                {t("certificates.companion.link")}
             </Link>
         </span>
     </div>
@@ -65,7 +69,7 @@ const {
     <span class={"block self-end lg:hidden"}>
         <Link href={link}>
             <LinkIcon />
-            Dirección
+            {t("certificates.companion.link")}
         </Link>
     </span>
 </article>

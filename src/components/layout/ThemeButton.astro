@@ -2,6 +2,10 @@
 import MoonIcon from "../icons/Moon.astro";
 import SunIcon from "../icons/Sun.astro";
 import DesktopIcon from "../icons/Desktop.astro";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <div
@@ -36,7 +40,7 @@ import DesktopIcon from "../icons/Desktop.astro";
                         data-theme="light"
                         class="w-full px-4 py-2 text-right text-lg font-bold hover:bg-gray-100 hover:underline hover:decoration-indigo-400 hover:decoration-4 dark:hover:bg-slate-800 dark:hover:decoration-pink-500 dark:hover:decoration-4"
                     >
-                        Claro
+                        {t("theme.light")}
                     </button>
                 </li>
                 <li>
@@ -45,7 +49,7 @@ import DesktopIcon from "../icons/Desktop.astro";
                         data-theme="dark"
                         class="w-full px-4 py-2 text-right text-lg font-bold hover:bg-gray-100 hover:underline hover:decoration-indigo-400 hover:decoration-4 dark:hover:bg-slate-800 dark:hover:decoration-pink-500 dark:hover:decoration-4"
                     >
-                        Oscuro
+                        {t("theme.dark")}
                     </button>
                 </li>
                 <li>
@@ -54,7 +58,7 @@ import DesktopIcon from "../icons/Desktop.astro";
                         data-theme="system"
                         class="w-full items-baseline px-4 py-2 text-right text-lg font-bold hover:bg-gray-100 hover:underline hover:decoration-indigo-400 hover:decoration-4 dark:hover:bg-slate-800 dark:hover:text-white dark:hover:decoration-pink-500 dark:hover:decoration-4"
                     >
-                        Sistema
+                        {t("theme.system")}
                     </button>
                 </li>
             </ul>

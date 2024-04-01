@@ -1,34 +1,27 @@
 ---
 import UserHeartIcon from "../../components/icons/UserHeart.astro";
+import { routes } from "../../i18n/ui";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+import { about } from "../../i18n/ui";
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const translatedAbout = about[lang];
+const sectionId = routes[lang]["about-me"].replace("#", "");
 ---
 
 <section
     class={"flex w-full flex-col items-start justify-center gap-8 pt-28 md:w-4/5"}
-    id={"about-me"}
+    id={sectionId}
 >
     <h3
         class={"inline-flex w-full flex-row items-center justify-center gap-4 text-4xl md:justify-start"}
     >
-        <UserHeartIcon class={"hidden size-16 sm-mobile:inline-block"} />Sobre
-        mí
+        <UserHeartIcon class={"hidden size-16 sm-mobile:inline-block"} />{
+            t("about-me.header")
+        }
     </h3>
-    <div class={"flex flex-col items-center justify-center gap-8"}>
-        <p class={"w-full text-center md:text-left"}>
-            Mi interés por la programación despertó junto con el lanzamiento de
-            la serie <span class={"highlight"}>Mr Robot</span>. Empecé con
-            Python pero me pareció muy aburrido. Quería algo más
-            <span class={"highlight"}>interactivo</span>, más
-            <span class={"highlight"}>visual</span>, fue entonces cuando conocí
-            <span class={"highlight"}>Javascript</span>.
-        </p>
-        <p class={"w-full text-center md:text-left"}>
-            Desde entonces me he dedicado a estudiar el lenguaje y su ecosistema
-            desarrollando varias aplicaciones en el proceso enfocándome en el
-            <span class={"highlight"}>diseño UX/UI</span>.
-        </p>
-        <p class={"w-full text-center md:text-left"}>
-            Los videojuegos, el arte digital, los podcasts, el anime y el manga
-            son algunos de mis pasatiempos 😉.
-        </p>
-    </div>
+    <div
+        class={"flex flex-col items-center justify-center gap-8"}
+        set:html={translatedAbout}
+    />
 </section>

@@ -2,6 +2,11 @@
 import Link from "../../shared/Link.astro";
 import GithubIcon from "../../icons/Github.astro";
 import LinkIcon from "../../icons/Link.astro";
+import { getLangFromUrl, useTranslations } from "../../../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
 const { repo, web } = Astro.props;
 ---
 
@@ -10,13 +15,13 @@ const { repo, web } = Astro.props;
 >
     <Link href={repo}>
         <GithubIcon class={"size-7"} name={"icon"} />
-        Código
+        {t("projects.companion.links.repository")}
     </Link>
     {
         web ? (
             <Link href={web}>
                 <LinkIcon class={"size-7"} name={"icon"} />
-                Web
+                {t("projects.companion.links.web")}
             </Link>
         ) : null
     }

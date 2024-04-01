@@ -1,6 +1,15 @@
 ---
 import CloseIcon from "../icons/Close.astro";
 import HamburguerIcon from "../icons/Hamburguer.astro";
+import {
+    getLangFromUrl,
+    useTranslations,
+    useTranslatedPath,
+} from "../../i18n/utils.ts";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
 
 interface NavItems {
     title: string;
@@ -10,24 +19,24 @@ interface NavItems {
 
 const navItems: NavItems[] = [
     {
-        title: "proyectos",
+        title: t("navbar.projects"),
         label: "projects",
-        url: "/#projects",
+        url: translatePath("/#projects", lang),
     },
     {
-        title: "certificados",
+        title: t("navbar.certificates"),
         label: "certificates",
-        url: "/#certificates",
+        url: translatePath("/#certificates", lang),
     },
     {
-        title: "Sobre mí",
+        title: t("navbar.about-me"),
         label: "about-me",
-        url: "/#about-me",
+        url: translatePath("/#about-me", lang),
     },
     {
-        title: "Inicio",
+        title: t("navbar.home"),
         label: "home",
-        url: "/#home",
+        url: translatePath("/#home", lang),
     },
 ];
 ---

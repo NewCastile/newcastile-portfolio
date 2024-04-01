@@ -1,7 +1,12 @@
 ---
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 import GithubIcon from "../icons/Github.astro";
 import LinkedInIcon from "../icons/LinkedIn.astro";
 import MailForwardIcon from "../icons/MailForward.astro";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
 const GITHUB_PROFILE_LINK = "https://github.com/NewCastile";
 const MAILTO_LINK = "mailto:carlosaguanipa1@gmail.com";
 const LINKEDIN_PROFILE_LINK = "https://www.linkedin.com/in/cguanipa/";
@@ -16,7 +21,7 @@ const LINKEDIN_PROFILE_LINK = "https://www.linkedin.com/in/cguanipa/";
         <span
             class={"hidden w-full flex-row items-center justify-start gap-4 xl:inline-flex xl:justify-start"}
         >
-            Hecho por
+            {t("footer.companion.github")}
             <a
                 class={"inline-flex flex-row items-center justify-center gap-2 py-4"}
                 href={GITHUB_PROFILE_LINK}
@@ -37,7 +42,7 @@ const LINKEDIN_PROFILE_LINK = "https://www.linkedin.com/in/cguanipa/";
                 target={"_blank"}
             >
                 <MailForwardIcon class={"inline-block size-10"} />
-                Contáctame
+                {t("footer.companion.mail")}
             </a>
             <a
                 class={"px-2 py-4"}

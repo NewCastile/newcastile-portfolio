@@ -1,39 +1,31 @@
 ---
 import CertificateIcon from "../../components/icons/Certificate.astro";
-import firstCertificate from "../../images/certificates/first-certificate.jpg";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+import { certificates, routes } from "../../i18n/ui";
 import Certificate from "../sections/certificates/Certificate.astro";
 
-interface Course {
-  name: string;
-  teachers: [string];
-  certificateSrc: ImageMetadata;
-  link: string;
-}
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
-const courses: Course[] = [
-  {
-    name: "React - Guía definitiva: hooks router redux next +Proyectos",
-    teachers: ["Nicholas Schurmann"],
-    certificateSrc: firstCertificate,
-    link: "https://www.udemy.com/course/react-guia-definitiva-hooks-router-redux-next-proyectos",
-  },
-];
+const translatedCertificates = certificates[lang];
+
+const sectionId = routes[lang]["certificates"].replace("#", "");
 ---
 
 <section
   class={"flex w-full flex-col items-start justify-center gap-12 pt-28 md:w-4/5"}
-  id={"certificates"}
+  id={sectionId}
 >
   <h3
     class={"inline-flex w-full flex-row items-center justify-center gap-4 text-4xl md:justify-start"}
   >
-    <CertificateIcon
-      class={"hidden size-20 sm-mobile:inline-block"}
-    />Certificados
+    <CertificateIcon class={"hidden size-20 sm-mobile:inline-block"} />{
+      t("certificates.header")
+    }
   </h3>
   <div class={"flex w-full flex-col items-center justify-center gap-14"}>
     {
-      courses.map((course) => {
+      translatedCertificates.map((course) => {
         return <Certificate course={course} />;
       })
     }
