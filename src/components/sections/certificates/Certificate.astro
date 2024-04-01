@@ -3,16 +3,10 @@ import { Image } from "astro:assets";
 import Link from "../../shared/Link.astro";
 import LinkIcon from "../../icons/Link.astro";
 import { getLangFromUrl, useTranslations } from "../../../i18n/utils";
+import type { Course } from "../../../types";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-
-interface Course {
-    name: string;
-    teachers: [string];
-    certificateSrc: ImageMetadata;
-    link: string;
-}
 
 interface Props {
     course: Course;

@@ -1,18 +1,6 @@
 ---
 import { Image } from "astro:assets";
-
-interface TechnologyGroupItem {
-  name: string;
-  icon: {
-    src: ImageMetadata;
-    size: number;
-  };
-}
-
-interface TechnologyGroup {
-  name: string;
-  items: TechnologyGroupItem[];
-}
+import type { TechnologyGroup } from "../../../../types";
 
 interface Props {
   technologyGroup: TechnologyGroup;

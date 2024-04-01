@@ -6,16 +6,11 @@ import {
     useTranslations,
     useTranslatedPath,
 } from "../../i18n/utils.ts";
+import type { NavItems } from "../../types";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const translatePath = useTranslatedPath(lang);
-
-interface NavItems {
-    title: string;
-    label: string;
-    url: string;
-}
 
 const navItems: NavItems[] = [
     {

@@ -3,25 +3,7 @@ import { Image } from "astro:assets";
 import ExternalLink from "../../icons/ExternalLink.astro";
 import TechnologyBadge from "./technology/TechnologyBadge.astro";
 import ProjectLinks from "./ProjectLinks.astro";
-
-interface Technology {
-    name: string;
-    icon: {
-        src: ImageMetadata;
-        size: number;
-        background?: boolean;
-        backgroundColor?: string;
-    };
-}
-
-interface Project {
-    name: string;
-    description: string;
-    image: ImageMetadata;
-    technologies: Technology[];
-    repo: string;
-    web?: string;
-}
+import type { Project } from "../../../types";
 
 interface Props {
     project: Project;

@@ -1,18 +1,10 @@
 ---
 import { Image } from "astro:assets";
 import Badge from "../../../shared/Badge.astro";
-
-interface Technology {
-  name: string;
-  icon: {
-    src: ImageMetadata;
-    size: number;
-    background?: boolean;
-  };
-}
+import type { TechnologyGroupItem } from "../../../../types";
 
 interface Props {
-  technology: Technology;
+  technology: TechnologyGroupItem;
 }
 
 const { technology } = Astro.props;

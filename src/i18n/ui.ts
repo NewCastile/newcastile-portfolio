@@ -22,47 +22,8 @@ import basementStudioChallengeImg from "../images/projects/basement-studio-chall
 import spaceTourismChallengeImg from "../images/projects/space-tourism-challenge.jpg";
 
 import firstCertificate from "../images/certificates/first-certificate.jpg";
+import type { Course, Project, TechnologyGroup, TechnologyGroupItem } from "../types";
 
-import type { ImageInputFormat } from "astro";
-
-
-export interface ImageMetadata {
-    src: string;
-    width: number;
-    height: number;
-    format: ImageInputFormat;
-    orientation?: number;
-}
-
-export interface TechnologyGroupItem {
-    name: string;
-    icon: {
-        src: ImageMetadata;
-        size: number;
-        background?: boolean;
-    };
-}
-
-export interface TechnologyGroup {
-    name: string;
-    items: TechnologyGroupItem[];
-}
-
-export interface Project {
-    name: string;
-    description: string;
-    image: ImageMetadata;
-    technologies: Array<TechnologyGroupItem>;
-    repo: string;
-    web?: string;
-}
-
-export interface Course {
-    name: string;
-    teachers: [string];
-    certificateSrc: ImageMetadata;
-    link: string;
-}
 
 export const languages = {
     en: {
@@ -80,6 +41,10 @@ export const languages = {
 export const defaultLang = "en";
 
 export const showDefaultLang = false;
+
+export const GITHUB_PROFILE_LINK = "https://github.com/NewCastile";
+export const MAILTO_LINK = "mailto:carlosaguanipa1@gmail.com";
+export const LINKEDIN_PROFILE_LINK = "https://www.linkedin.com/in/cguanipa/";
 
 export const technologyGroups: Record<string, TechnologyGroup[]> = {
     en: [
