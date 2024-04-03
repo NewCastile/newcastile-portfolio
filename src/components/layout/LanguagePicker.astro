@@ -41,7 +41,7 @@ const LOCALES = Object.entries(languages).map((locale) => {
                         <span
                             id={lang}
                             data-locale-option-content
-                            data-is-default-locale={isCurrent}
+                            data-is-current-locale={isCurrent}
                             data-href={translatePath(
                                 `/${href ? href : ""}`,
                                 lang,
@@ -71,7 +71,7 @@ const LOCALES = Object.entries(languages).map((locale) => {
                                 <span
                                     role="link"
                                     data-toggle-locale-button
-                                    data-is-default-locale={isCurrent}
+                                    data-is-current-locale={isCurrent}
                                     data-locale-code={lang}
                                     data-href={translatePath(
                                         `/${href ? href : ""}`,
@@ -119,16 +119,11 @@ const LOCALES = Object.entries(languages).map((locale) => {
     const toggleLocaleButtonContent = document.querySelectorAll(
         "[data-locale-option-content]",
     );
-
-    const toggleLocaleButtons = document.querySelectorAll(
-        "[data-toggle-locale-button]",
-    );
-
-    const getDefaultLocale = () => {
+    const getCurrentLocale = () => {
         return Array.from(toggleLocaleButtonContent)
             .map((element) => {
                 const isCurrent = element.getAttribute(
-                    "data-is-default-locale",
+                    "data-is-current-locale",
                 );
                 const href = element.getAttribute("data-href");
                 const code = element.getAttribute("id");
@@ -142,7 +137,7 @@ const LOCALES = Object.entries(languages).map((locale) => {
             });
     };
 
-    const defaultLocale = getDefaultLocale();
+    const currentLocale = getCurrentLocale();
 
     const toggleLocaleMenuVisibility = () => {
         localeDropdownMenu.classList.toggle("hidden");
@@ -170,23 +165,29 @@ const LOCALES = Object.entries(languages).map((locale) => {
         updateLocaleButtonContent(locale);
     };
 
-    updateLocale(defaultLocale);
+    updateLocale(currentLocale);
 
     const handleToggleLocaleButton = (locale, href) => {
         updateLocale(locale);
         window.location = href;
     };
 
-    toggleLocaleButtons.forEach((button) => {
-        const code = button.getAttribute("data-locale-code");
-        const href = button.getAttribute("data-href");
-        const isCurrent = button.getAttribute("data-is-default-locale");
+    localeDropdownMenu.addEventListener("click", (event) => {
+        let target;
+
+        if (event.target.hasAttribute("data-toggle-locale-button")) {
+            target = event.target;
+        } else {
+            target = event.target.parentElement;
+        }
+
+        const code = target.getAttribute("data-locale-code");
+        const href = target.getAttribute("data-href");
+        const isCurrent = target.getAttribute("data-is-default-locale");
         const locale = { code, href, isCurrent };
-        button.addEventListener("click", (event) => {
-            event.stopPropagation();
-            handleToggleLocaleButton(locale, href);
-            toggleLocaleMenuVisibility();
-        });
+
+        handleToggleLocaleButton(locale, href);
+        toggleLocaleMenuVisibility();
     });
 
     const localeMenuOnOutsideClick = (selector, cb) => {

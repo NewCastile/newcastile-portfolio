@@ -102,9 +102,6 @@ const t = useTranslations(lang);
         "[data-theme-button-icon]",
     );
     const themesMenu = document.getElementById("themes-menu");
-    const toggleThemeButtons = document.querySelectorAll(
-        "[data-toggle-theme-button]",
-    );
 
     const matchMedia = window.matchMedia("(prefers-color-scheme: dark)");
 
@@ -144,13 +141,13 @@ const t = useTranslations(lang);
         updateTheme(theme);
     };
 
-    toggleThemeButtons.forEach((button) => {
-        const theme = button.getAttribute("data-theme");
-        button.addEventListener("click", (event) => {
-            event.stopPropagation();
+    themesMenu.addEventListener("click", (event) => {
+        event.stopPropagation();
+        if (event.target.tagName === "BUTTON") {
+            const theme = event.target.getAttribute("data-theme");
             handleToggleThemeButtonClick(theme ?? "system");
             toggleMenuVisibility();
-        });
+        }
     });
 
     matchMedia.addEventListener("change", () => {
