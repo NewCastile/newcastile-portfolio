@@ -19,50 +19,64 @@ const t = useTranslations(lang);
     <div
         class={"flex w-full flex-col items-center justify-between xl:flex-row"}
     >
-        <span
-            class={"hidden w-full flex-row items-center justify-start gap-4 xl:inline-flex xl:justify-start"}
-        >
-            {t("footer.companion.github")}
-            <a
-                class={"inline-flex flex-row items-center justify-center gap-2 py-4"}
-                href={GITHUB_PROFILE_LINK}
-                rel={"noopener noreferrer"}
-                role={"link"}
-                target={"_blank"}
-            >
-                <GithubIcon class={"inline-block size-6"} name={"icon"} /> NewCastile
-            </a>
-        </span>
-        <div
+        <ul role="list">
+            <li>
+                <span
+                    class={"hidden w-full flex-row items-center justify-start gap-4 xl:inline-flex xl:justify-start"}
+                >
+                    {t("footer.companion.github")}
+                    <a
+                        class={"inline-flex flex-row items-center justify-center gap-2 py-4"}
+                        href={GITHUB_PROFILE_LINK}
+                        rel={"noopener noreferrer"}
+                        role={"link"}
+                        target={"_blank"}
+                    >
+                        <GithubIcon
+                            class={"inline-block size-6"}
+                            name={"icon"}
+                        /> NewCastile
+                    </a>
+                </span>
+            </li>
+        </ul>
+        <ul
+            role="list"
             class={"flex w-full flex-col items-center justify-center gap-4 sm:flex-row lg:justify-center lg:gap-10"}
         >
-            <a
-                class={"px-2 py-4"}
-                href={MAILTO_LINK}
-                rel={"noopener noreferrer"}
-                target={"_blank"}
-            >
-                <MailForwardIcon class={"inline-block size-10"} />
-                {t("footer.companion.mail")}
-            </a>
-            <a
-                class={"px-2 py-4"}
-                href={LINKEDIN_PROFILE_LINK}
-                rel={"noopener noreferrer"}
-                target={"_blank"}
-            >
-                <LinkedInIcon class={"inline-block size-6"} />
-                LinkedIn
-            </a>
-            <a
-                class={"block px-2 py-4 xl:hidden"}
-                href={GITHUB_PROFILE_LINK}
-                rel={"noopener noreferrer"}
-                target={"_blank"}
-            >
-                <GithubIcon class={"inline-block size-6"} />
-                Github
-            </a>
-        </div>
+            <li>
+                <a
+                    class={"px-2 py-4"}
+                    href={MAILTO_LINK}
+                    rel={"noopener noreferrer"}
+                    target={"_blank"}
+                >
+                    <MailForwardIcon class={"inline-block size-10"} />
+                    {t("footer.companion.mail")}
+                </a>
+            </li>
+            <li>
+                <a
+                    class={"px-2 py-4"}
+                    href={LINKEDIN_PROFILE_LINK}
+                    rel={"noopener noreferrer"}
+                    target={"_blank"}
+                >
+                    <LinkedInIcon class={"inline-block size-6"} />
+                    LinkedIn
+                </a>
+            </li>
+            <li>
+                <a
+                    class={"block px-2 py-4 xl:hidden"}
+                    href={GITHUB_PROFILE_LINK}
+                    rel={"noopener noreferrer"}
+                    target={"_blank"}
+                >
+                    <GithubIcon class={"inline-block size-6"} />
+                    Github
+                </a>
+            </li>
+        </ul>
     </div>
 </footer>

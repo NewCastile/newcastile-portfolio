@@ -55,8 +55,9 @@ const LOCALES = Object.entries(languages).map((locale) => {
                 })
             }
         </button>
-        <div
+        <nav
             id="locales-menu"
+            aria-label="Language Options"
             class="absolute left-0 top-20 hidden w-28 rounded-lg bg-slate-400/30 shadow backdrop-blur-xl dark:bg-slate-900/90"
         >
             <ul
@@ -67,7 +68,7 @@ const LOCALES = Object.entries(languages).map((locale) => {
                     LOCALES.map((locale) => {
                         const { lang, href, isCurrent, label, flag } = locale;
                         return (
-                            <li class="w-full">
+                            <li class="w-full" role="none">
                                 <span
                                     role="link"
                                     data-toggle-locale-button
@@ -87,7 +88,7 @@ const LOCALES = Object.entries(languages).map((locale) => {
                     })
                 }
             </ul>
-        </div>
+        </nav>
     </div>
 </div>
 
