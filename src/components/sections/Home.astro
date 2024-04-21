@@ -3,6 +3,7 @@ import LinkedInIcon from "../icons/LinkedIn.astro";
 import Link from "../shared/Link.astro";
 import MailForward from "../icons/MailForward.astro";
 import GithubIcon from "../icons/Github.astro";
+import githubProfilePicture from "../../images/github-profile-picture.jpg";
 import { Image } from "astro:assets";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 import {
@@ -19,20 +20,22 @@ const sectionId = routes[lang]["home"].replace("#", "");
 ---
 
 <section
-    class={"flex w-full flex-col items-start justify-center gap-4 px-2 pt-20 md:px-12 lg:w-4/5"}
+    class={"flex w-full flex-col items-start justify-center gap-4 md:px-12 lg:w-4/5"}
     id={sectionId}
 >
     <div
-        class={"flex flex-col-reverse items-center justify-center gap-8 lg:flex-row"}
+        class={"flex flex-col-reverse items-center justify-center gap-8 xl:grid xl:grid-cols-2 xl:grid-flow-rows"}
     >
-        <div class={"flex w-full flex-col items-center justify-center gap-4"}>
+        <div
+            class={"flex size-full flex-col items-center justify-center gap-4"}
+        >
             <h2
-                class={"w-full text-center text-4xl dark:text-pink-400 sm-mobile:text-5xl md:text-5xl lg:text-left"}
+                class={"w-full text-center text-4xl dark:text-pink-400 sm-mobile:text-5xl md:text-5xl xl:text-left"}
             >
                 {t("home.greet")}
             </h2>
             <h3
-                class={"w-full text-center text-xl text-indigo-500 dark:text-yellow-200 sm-mobile:text-3xl md:text-3xl lg:text-left"}
+                class={"w-full text-center text-xl text-indigo-500 dark:text-yellow-200 sm-mobile:text-3xl md:text-3xl xl:text-left"}
             >
                 {t("home.charge")}
                 <br />React & NextJS
@@ -43,24 +46,24 @@ const sectionId = routes[lang]["home"].replace("#", "");
                 {t("home.description")}
             </p>
         </div>
-        <div
-            class={"flex h-full w-3/4 flex-col items-center justify-center sm:w-1/2"}
-        >
-            <Image
-                alt={"profile-picture"}
-                class={"rounded-full p-0 ring-8 ring-indigo-300 dark:ring-pink-500/60 sm-mobile:p-4"}
-                height={250}
-                loading={"lazy"}
-                src={"https://avatars.githubusercontent.com/u/78671291?v=4"}
-                width={250}
-            />
+        <div class={"flex size-full flex-col items-center justify-center"}>
+            <div
+                class="flex flex-col justify-center size-60 sm:size-1/2 lg:size-60 items-center rounded-full border-8 border-indigo-300 dark:border-pink-500/60"
+            >
+                <Image
+                    alt={"profile-picture"}
+                    class={"size-full rounded-full"}
+                    loading={"lazy"}
+                    src={githubProfilePicture}
+                />
+            </div>
         </div>
     </div>
     <div
-        class={"flex w-full flex-col items-center justify-center gap-4 lg:w-1/2"}
+        class={"flex w-full flex-col items-center justify-center gap-4 xl:w-1/2"}
     >
         <div
-            class={"flex w-full flex-row flex-nowrap items-center justify-center gap-4 text-indigo-400 lg:flex-wrap lg:justify-start"}
+            class={"flex w-full flex-row flex-nowrap items-center justify-center gap-4 text-indigo-400 xl:flex-wrap xl:justify-start"}
         >
             <Link href={MAILTO_LINK}>
                 <MailForward class={"size-6"} slot={"icon"} />
