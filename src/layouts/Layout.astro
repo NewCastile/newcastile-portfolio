@@ -43,6 +43,8 @@ const { title } = Astro.props;
 					rgb(var(--accent-light)) 30%,
 					white 60%
 				);
+
+				scroll-behavior: smooth;
 			}
 
 			html {
@@ -63,6 +65,9 @@ const { title } = Astro.props;
 				height: 100%;
 				min-height: 100vh;
 				font-family: "Rubik Variable", sans-serif;
+
+				scroll-behavior: smooth;
+				scroll-padding-top: var(--scroll-padding, 50px);
 			}
 
 			h2,
@@ -97,5 +102,13 @@ const { title } = Astro.props;
 				all: unset;
 			}
 		</style>
+		<script>
+			const navbar = document.querySelector("astro-navbar");
+			const navbarHeight = navbar ? navbar.clientHeight : 50;
+			document.body.style.setProperty(
+				"--scroll-padding",
+				`${navbarHeight}px`,
+			);
+		</script>
 	</body>
 </html>

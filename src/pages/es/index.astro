@@ -10,7 +10,7 @@ import Footer from "../../components/layout/Footer.astro";
 <Layout title={"Portfolio de NewCastile - Desarrollador Frontend"}>
     <main class="w-full bg-none dark:bg-slate-950/50">
         <div
-            class={"mx-auto flex flex-col items-center justify-center bg-slate-400/30 p-10 backdrop-blur-sm dark:bg-slate-900/90 md:w-4/5 lg:w-3/4 lg:px-20"}
+            class={"mx-auto flex flex-col items-center justify-center bg-slate-400/30 gap-20 p-10 backdrop-blur-sm dark:bg-slate-900/90 md:w-4/5 lg:w-3/4 lg:px-20"}
         >
             <Home />
             <Projects />
@@ -20,3 +20,12 @@ import Footer from "../../components/layout/Footer.astro";
         </div>
     </main>
 </Layout>
+<script>
+    const navbar = document.querySelector("astro-navbar");
+    const navbarHeight = navbar ? navbar.clientHeight : 50;
+    const main = document.querySelector("main");
+    const wrapper = main ? main.querySelector("div") : null;
+    if (wrapper) {
+        wrapper.style.setProperty("padding-top", `${navbarHeight}px`);
+    }
+</script>
