@@ -36,15 +36,21 @@ const navItems: NavItems[] = [
 ];
 ---
 
-<header
+<astro-navbar
     class="fixed top-0 z-10 flex flex-row items-center justify-center w-full px-10 py-2 mobile:px-0 mobile:py-0"
 >
     <button
         id="toggle-navbar-button"
-        class="absolute z-10 block p-4 rounded-full top-14 right-10 sm:hidden bg-slate-400/30 dark:bg-slate-900/90 backdrop-blur focus:outline-none dark:text-gray-300"
+        class="absolute z-10 block h-max p-4 rounded-full overflow-hidden top-14 right-10 sm:hidden bg-slate-400/30 dark:bg-slate-900/90 backdrop-blur focus:outline-none dark:text-gray-300"
     >
-        <CloseIcon data-toggle-status="close" data-toggle-navbar-icon />
-        <HamburguerIcon data-toggle-status="open" data-toggle-navbar-icon />
+        <div class="h-7">
+            <HamburguerIcon data-toggle-status="OPEN" data-toggle-navbar-icon />
+            <CloseIcon
+                class:list={"hidden"}
+                data-toggle-status="CLOSE"
+                data-toggle-navbar-icon
+            />
+        </div>
     </button>
     <nav
         class="flex-col items-center justify-center hidden px-8 py-4 font-bold rounded-md shadow-lg bg-white/40 dark:bg-slate-500/90 text-inherit dark:text-gray-200 backdrop-blur ring-1 ring-white/10 sm:flex"
@@ -67,7 +73,8 @@ const navItems: NavItems[] = [
     </nav>
     <nav
         id="responsive-navbar-container"
-        class={"z-5 animate-fade-in backdrop-blur-xl absolute right-0 top-0 bg-slate-400/60 dark:bg-slate-800/90 dark:text-gray-300 flex h-screen w-full flex-col items-center justify-center py-10 px-16 sm:hidden"}
+        data-responsive-navbar-status="CLOSE"
+        class={"z-5 hidden backdrop-blur-xl absolute right-0 top-0 bg-slate-400/60 dark:bg-slate-800/90 dark:text-gray-300 h-screen w-full py-10 px-16 sm:hidden"}
     >
         <ul class="flex flex-col justify-start items-center gap-8" role="list">
             {
@@ -75,6 +82,7 @@ const navItems: NavItems[] = [
                     <li>
                         <span
                             role="link"
+                            data-responsive-navbar-link
                             data-link-url={link.url}
                             class="w-full text-lg font-bold text-left uppercase transition cursor-pointer"
                             aria-label={link.label}
@@ -86,98 +94,180 @@ const navItems: NavItems[] = [
             }
         </ul>
     </nav>
-</header>
-<script is:inline>
-    let status = "close";
-    let width = 0;
+</astro-navbar>
+<script>
+    const openClasses = [
+        "flex",
+        "flex-col",
+        "items-center",
+        "justify-center",
+        "animate-fade-in",
+    ];
+    const closeClasses = ["hidden"];
+    class Navbar extends HTMLElement {
+        constructor() {
+            super();
+            const $toggleNavbarButton = this.querySelector(
+                "#toggle-navbar-button",
+            );
+            const $toggleNavbarIcons = this.querySelectorAll(
+                "[data-toggle-navbar-icon]",
+            );
+            const $responsiveNavbarContainer = this.querySelector(
+                "#responsive-navbar-container",
+            );
 
-    const toggleNavbarButton = document.getElementById("toggle-navbar-button");
-    const toggleNavbarIcons = document.querySelectorAll(
-        "[data-toggle-navbar-icon]",
-    );
-    const responsiveNavbarContainer = document.getElementById(
-        "responsive-navbar-container",
-    );
+            const $responsiveNavbarLinks = this.querySelectorAll(
+                "[data-responsive-navbar-link]",
+            );
 
-    const toggleNavbarVisibility = (status) => {
-        responsiveNavbarContainer.classList.toggle(
-            ["flex", "animate-fade-in"],
-            status === "open",
-        );
-        responsiveNavbarContainer.classList.toggle("hidden", status !== "open");
-    };
+            const toggleNavbarVisibility = (status: string) => {
+                if ($responsiveNavbarContainer) {
+                    switch (status) {
+                        case "OPEN":
+                            $responsiveNavbarContainer.classList.remove(
+                                ...closeClasses,
+                            );
+                            $responsiveNavbarContainer.classList.add(
+                                ...openClasses,
+                            );
 
-    toggleNavbarVisibility(status);
+                            break;
+                        case "CLOSE":
+                            $responsiveNavbarContainer.classList.remove(
+                                ...openClasses,
+                            );
+                            $responsiveNavbarContainer.classList.add(
+                                ...closeClasses,
+                            );
+                            break;
+                    }
+                }
+            };
 
-    const toggleIconVisibility = (status) => {
-        toggleNavbarIcons.forEach((icon) => {
-            const toggleStatus = icon.getAttribute("data-toggle-status");
-            icon.classList.toggle("inline-block", toggleStatus !== status);
-            icon.classList.toggle("hidden", toggleStatus === status);
-        });
-    };
+            const toggleIconVisibility = (status: string) => {
+                $toggleNavbarIcons.forEach((icon) => {
+                    const iconStatus = icon.getAttribute("data-toggle-status");
 
-    toggleIconVisibility(status);
+                    icon.classList.toggle(
+                        "inline-block",
+                        iconStatus !== status,
+                    );
 
-    const toggleStatus = (forcedStatus) => {
-        if (forcedStatus) {
-            status = forcedStatus;
-            return;
-        }
-        if (status === "close") {
-            status = "open";
-        } else {
-            status = "close";
-        }
-    };
+                    icon.classList.toggle("hidden", iconStatus === status);
+                });
+            };
 
-    const toggleNavbar = (forcedStatus) => {
-        toggleStatus(forcedStatus);
-        toggleIconVisibility(status);
-        toggleNavbarVisibility(status);
-    };
+            const toggleStatus = (forcedStatus?: string) => {
+                if ($responsiveNavbarContainer) {
+                    if (forcedStatus) {
+                        $responsiveNavbarContainer.setAttribute(
+                            "data-responsive-navbar-status",
+                            forcedStatus,
+                        );
+                        return;
+                    }
+                    const currentStatus =
+                        $responsiveNavbarContainer.getAttribute(
+                            "data-responsive-navbar-status",
+                        );
+                    switch (currentStatus) {
+                        case "CLOSE":
+                            $responsiveNavbarContainer.setAttribute(
+                                "data-responsive-navbar-status",
+                                "OPEN",
+                            );
+                        case "OPEN":
+                            $responsiveNavbarContainer.setAttribute(
+                                "data-responsive-navbar-status",
+                                "CLOSE",
+                            );
+                            break;
+                    }
+                }
+            };
 
-    const navbarButtonOnClickHandler = (event) => {
-        event.stopPropagation();
-        toggleNavbar();
-    };
+            const toggleNavbar = (forcedStatus?: string) => {
+                if ($responsiveNavbarContainer) {
+                    if (forcedStatus) {
+                        toggleStatus(forcedStatus);
+                        toggleIconVisibility(forcedStatus);
+                        toggleNavbarVisibility(forcedStatus);
+                        return;
+                    }
 
-    const observerCallback = (entries) => {
-        const entry = entries[0];
-        if (entry.contentBoxSize) {
-            const contentBoxSize = Array.isArray(entry.contentBoxSize)
-                ? entry.contentBoxSize[0]
-                : entry.contentBoxSize;
-            width = contentBoxSize.inlineSize;
-            if (contentBoxSize.inlineSize === 0) {
-                toggleNavbar("close");
-                return;
+                    const status = $responsiveNavbarContainer.getAttribute(
+                        "data-responsive-navbar-status",
+                    );
+                    switch (status) {
+                        case "CLOSE":
+                            toggleStatus("OPEN");
+                            toggleIconVisibility("OPEN");
+                            toggleNavbarVisibility("OPEN");
+                            break;
+                        case "OPEN":
+                            toggleStatus("CLOSE");
+                            toggleIconVisibility("CLOSE");
+                            toggleNavbarVisibility("CLOSE");
+                            break;
+                    }
+                }
+            };
+
+            const navbarButtonOnClickHandler = (event: Event) => {
+                event.stopPropagation();
+                toggleNavbar();
+            };
+
+            const observerCallback = (entries: ResizeObserverEntry[]) => {
+                const entry = entries[0];
+                if (entry.contentBoxSize) {
+                    const contentBoxSize = Array.isArray(entry.contentBoxSize)
+                        ? entry.contentBoxSize[0]
+                        : entry.contentBoxSize;
+                    if (contentBoxSize.inlineSize === 0) {
+                        toggleNavbar("CLOSE");
+                        return;
+                    }
+                } else {
+                    //
+                }
+            };
+
+            const observer = new ResizeObserver((entries) => {
+                observerCallback(entries);
+            });
+
+            if ($responsiveNavbarContainer) {
+                observer.observe($responsiveNavbarContainer);
             }
-        } else {
-            //
+
+            if ($toggleNavbarButton) {
+                $toggleNavbarButton.addEventListener("click", (event) => {
+                    navbarButtonOnClickHandler(event);
+                });
+            }
+
+            $responsiveNavbarLinks.forEach((link) => {
+                if (link) {
+                    const url = link.getAttribute("data-link-url");
+                    if (url) {
+                        link.addEventListener("click", (event) => {
+                            event.preventDefault();
+                            toggleNavbar();
+                            document.location.href = url;
+                        });
+                    }
+                }
+            });
+
+            document.documentElement.addEventListener("keyup", (event) => {
+                if (event.key == "Escape") {
+                    navbarButtonOnClickHandler(event);
+                }
+            });
         }
-    };
+    }
 
-    const observer = new ResizeObserver((entries) => {
-        observerCallback(entries);
-    });
-
-    observer.observe(responsiveNavbarContainer);
-
-    toggleNavbarButton.addEventListener("click", navbarButtonOnClickHandler);
-
-    responsiveNavbarContainer.addEventListener("click", (event) => {
-        const target = event.target;
-        if (target && target.getAttribute("data-link-url")) {
-            const url = target.getAttribute("data-link-url");
-            toggleNavbar();
-            window.location = url;
-        }
-    });
-
-    document.addEventListener("keyup", (event) => {
-        if (event.key == "Escape") {
-            navbarButtonOnClickHandler();
-        }
-    });
+    customElements.define("astro-navbar", Navbar);
 </script>
