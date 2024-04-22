@@ -14,12 +14,12 @@ const t = useTranslations(lang);
 ---
 
 <footer
-    class={"mt-32 flex w-full flex-col items-start justify-center gap-8 text-xl font-bold md:w-4/5"}
+    class={"mt-12 md:mt-20 lg:mt-28 xl:mt-32 flex w-full flex-col items-start justify-center gap-8 text-xl font-bold md:w-4/5"}
 >
     <div
         class={"flex w-full flex-col items-center justify-between xl:flex-row"}
     >
-        <ul role="list">
+        <ul role="list" class="w-full flex flex-row justify-start items-center">
             <li>
                 <span
                     class={"hidden w-full flex-row items-center justify-start gap-4 xl:inline-flex xl:justify-start"}
@@ -42,7 +42,7 @@ const t = useTranslations(lang);
         </ul>
         <ul
             role="list"
-            class={"flex w-full flex-col items-center justify-center gap-4 sm:flex-row lg:justify-center lg:gap-10"}
+            class={"flex w-full flex-col items-center justify-center gap-4 sm:flex-row xl:justify-end lg:gap-10"}
         >
             <li>
                 <a
