@@ -3,8 +3,6 @@ import LinkedInIcon from "../icons/LinkedIn.astro";
 import Link from "../shared/Link.astro";
 import MailForward from "../icons/MailForward.astro";
 import GithubIcon from "../icons/Github.astro";
-import githubProfilePicture from "../../images/github-profile-picture.jpg";
-import { Image } from "astro:assets";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 import {
     GITHUB_PROFILE_LINK,
@@ -24,40 +22,24 @@ const sectionId = routes[lang]["home"].replace("#", "");
     id={sectionId}
 >
     <div
-        class={"w-full flex flex-col-reverse items-center justify-center gap-8 xl:grid xl:grid-cols-2 xl:grid-flow-rows"}
+        class={"w-full flex flex-col items-center justify-center gap-8"}
     >
-        <div
-            class={"flex size-full flex-col items-center justify-center gap-4"}
+        <h2
+            class={"w-full text-center text-4xl dark:text-pink-400 sm-mobile:text-5xl md:text-5xl xl:text-left"}
         >
-            <h2
-                class={"w-full text-center text-4xl dark:text-pink-400 sm-mobile:text-5xl md:text-5xl xl:text-left"}
-            >
-                {t("home.greet")}
-            </h2>
-            <h3
-                class={"w-full text-center text-xl text-indigo-500 dark:text-yellow-200 sm-mobile:text-3xl md:text-3xl xl:text-left"}
-            >
-                {t("home.charge")}
-                <br />React & NextJS
-            </h3>
-            <p
-                class={"hidden w-full text-center text-xl sm-mobile:block sm:w-3/4 md:w-full lg:text-left"}
-            >
-                {t("home.description")}
-            </p>
-        </div>
-        <div class={"flex size-full flex-col items-center justify-center"}>
-            <div
-                class="flex flex-col justify-center size-60 md:size-2/5 lg:size-72 items-center rounded-full border-8 border-indigo-300 dark:border-pink-500/60"
-            >
-                <Image
-                    alt={"profile-picture"}
-                    class={"size-full rounded-full"}
-                    loading={"lazy"}
-                    src={githubProfilePicture}
-                />
-            </div>
-        </div>
+            {t("home.greet")}
+        </h2>
+        <h3
+            class={"w-full text-center text-xl text-indigo-500 dark:text-yellow-200 sm-mobile:text-3xl md:text-3xl xl:text-left"}
+        >
+            {t("home.charge")}
+            <br />React & NextJS
+        </h3>
+        <p
+            class={"hidden w-full text-center text-xl sm-mobile:block sm:w-3/4 md:w-full lg:text-left"}
+        >
+            {t("home.description")}
+        </p>
     </div>
     <div
         class={"flex w-full flex-col items-center justify-center gap-4 xl:w-1/2"}
