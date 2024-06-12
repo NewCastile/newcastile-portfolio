@@ -5,7 +5,7 @@ class ThemeButton extends HTMLElement {
     const $themeMenuButton = this.querySelector<HTMLElement>(
       "#toggle-theme-button"
     );
-    const $themeMenuButtonIcons = this.querySelectorAll(
+    const $themeMenuButtonIcons = document.querySelectorAll(
       "[data-theme-button-icon]"
     );
     const $themesMenu = this.querySelector<HTMLElement>("#themes-menu");
