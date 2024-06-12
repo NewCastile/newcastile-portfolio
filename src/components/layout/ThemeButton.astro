@@ -8,20 +8,22 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<div
-    class="fixed right-10 top-32 z-40 flex w-max flex-row items-center justify-start py-2 sm:top-0"
+<astro-theme-button
+    class="flex w-full sm:w-max flex-row items-center justify-start py-2 sm:top-0"
 >
     <div class="relative">
         <button
             aria-label="Open Themes Menu"
             id="toggle-theme-button"
             data-dropdown-toggle="themes-menu"
-            class="inline-flex w-max rounded-md bg-slate-400/30 p-4 align-baseline font-bold uppercase text-inherit shadow-lg backdrop-blur dark:bg-slate-900/90"
+            class="inline-flex w-max rounded-md bg-slate-400/30 px-4 py-3 align-baseline font-bold uppercase text-inherit shadow-lg backdrop-blur dark:bg-slate-900/90"
             type="button"
         >
-            <SunIcon id="light" data-theme-button-icon class="opacity-100" />
-            <MoonIcon id="dark" data-theme-button-icon class="opacity-100" />
+            <SunIcon width="20" height="20" id="light" data-theme-button-icon class="opacity-100" />
+            <MoonIcon width="20" height="20" id="dark" data-theme-button-icon class="opacity-100" />
             <DesktopIcon
+                width="20" 
+                height="20"
                 id="system"
                 data-theme-button-icon
                 class="opacity-100"
@@ -29,7 +31,7 @@ const t = useTranslations(lang);
         </button>
         <div
             id="themes-menu"
-            class="absolute right-0 top-20 hidden w-40 rounded-lg bg-slate-400/30 shadow backdrop-blur-xl dark:bg-slate-900/90"
+            class="absolute right-0 top-20 hidden w-40 rounded-lg bg-slate-400/30 shadow dark:bg-slate-900"
         >
             <ul
                 class="py-2 text-sm dark:text-gray-200"
@@ -65,8 +67,7 @@ const t = useTranslations(lang);
             </ul>
         </div>
     </div>
-</div>
-
+</astro-theme-button>
 <style>
     #themes-menu.open {
         display: block;
@@ -86,7 +87,8 @@ const t = useTranslations(lang);
         }
     }
 </style>
-<script is:inline>
+<script src="../../scripts/astro-theme-button.ts"></script>
+<!-- <script is:inline>
     const getTheme = () => {
         if (typeof localStorage !== "undefined") {
             return localStorage.getItem("theme") ?? "system";
@@ -169,4 +171,4 @@ const t = useTranslations(lang);
         themesMenu.classList.add("hidden");
         themesMenu.classList.remove("open");
     });
-</script>
+</script> -->

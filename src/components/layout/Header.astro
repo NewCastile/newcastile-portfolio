@@ -7,6 +7,7 @@ import {
     useTranslatedPath,
 } from "../../i18n/utils.ts";
 import type { NavItems } from "../../types";
+import ThemeButton from "./ThemeButton.astro";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -37,7 +38,7 @@ const navItems: NavItems[] = [
 ---
 
 <astro-navbar
-    class="fixed top-0 z-10 flex flex-row items-center justify-center w-full px-10 py-2 mobile:px-0 mobile:py-0"
+    class="fixed top-0 z-10 flex flex-row items-center justify-center sm:justify-end md:justify-center w-full px-10 py-2 mobile:px-0 mobile:py-0"
 >
     <button
         id="toggle-navbar-button"
@@ -69,6 +70,7 @@ const navItems: NavItems[] = [
                     </li>
                 ))
             }
+            <li class="w-max relative"><ThemeButton /></li>
         </ul>
     </nav>
     <nav
@@ -92,9 +94,45 @@ const navItems: NavItems[] = [
                     </li>
                 ))
             }
+            <li class="w-max absolute top-32 right-11"><div class="relative w-max"><ThemeButton /></div></li>
         </ul>
     </nav>
 </astro-navbar>
+<script is:inline>
+    const getTheme = () => {
+        if (typeof localStorage !== "undefined") {
+            return localStorage.getItem("theme") ?? "system";
+        }
+
+        return window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light";
+    };
+
+    const theme = getTheme();
+
+    const $themeMenuButtonIcons = document.querySelectorAll(
+        "[data-theme-button-icon]"
+    );
+
+    const updateThemeButtonContent = (theme) => {
+        $themeMenuButtonIcons.forEach((icon) => {
+            const id = icon.id;
+            icon.classList.toggle("block", id === theme);
+            icon.classList.toggle("hidden", id !== theme);
+        });
+    };
+
+    const updateTheme = (theme) => {
+        const element = document.documentElement;
+        element.classList.toggle("dark", theme !== "light");
+
+        localStorage.setItem("theme", theme);
+        updateThemeButtonContent(theme);
+    };
+
+    updateTheme(theme);
+</script>
 <script>
     const openClasses = [
         "flex",
@@ -271,3 +309,4 @@ const navItems: NavItems[] = [
 
     customElements.define("astro-navbar", Navbar);
 </script>
+
