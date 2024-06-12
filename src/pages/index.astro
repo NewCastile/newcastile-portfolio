@@ -10,7 +10,7 @@ import Footer from "../components/layout/Footer.astro";
 <Layout title={"NewCastile Portfolio - Frontend Developer"}>
 	<main class="w-full bg-none dark:bg-slate-950/50">
 		<div
-			class={"mx-auto flex flex-col items-center justify-center bg-slate-400/30 p-10 pt-32 gap-20 backdrop-blur-sm dark:bg-slate-900/90 md:w-4/5 lg:w-3/4 lg:px-20"}
+			class={"mx-auto flex flex-col items-center justify-center bg-slate-400/30 p-10 pt-40 gap-20 backdrop-blur-sm dark:bg-slate-900/90 md:w-4/5 lg:w-3/4 lg:px-20"}
 		>
 			<Home />
 			<Projects />
@@ -20,61 +20,3 @@ import Footer from "../components/layout/Footer.astro";
 		</div>
 	</main>
 </Layout>
-<script>
-	import tailwindTheme from "../../tailwind.config.mjs";
-
-	const {
-		theme: {
-			extend: { screens },
-		},
-	} = tailwindTheme;
-
-	const assignWrapperTopPadding = (media: MediaQueryList) => {
-		const main = document.querySelector("main");
-		const wrapper = main ? main.querySelector("div") : null;
-
-		const navbar = document.querySelector("astro-navbar");
-		const toggleNavbarButton = navbar
-			? navbar.querySelector("#toggle-navbar-button")
-			: null;
-
-		if (navbar && wrapper && toggleNavbarButton) {
-			const classList = toggleNavbarButton.classList.toString();
-
-			const [topClass] = classList.split(" ").filter((tailwindClass) => {
-				return tailwindClass.includes("top");
-			});
-
-			const topClassValue = topClass
-				? topClass.replace("top-", "")
-				: null;
-
-			const rgx = /^pt/;
-
-			const paddingTopClass =
-				media.matches && topClassValue
-					? `pt-${topClassValue}`
-					: `pt-32`;
-
-			if (wrapper.className.includes("pt")) {
-				const newClassname = wrapper.className
-					.split(" ")
-					.map((c) => {
-						return c.match(rgx) ? paddingTopClass : c;
-					})
-					.join(" ");
-				wrapper.className = newClassname;
-			} else {
-				wrapper.classList.add(paddingTopClass);
-			}
-		}
-	};
-
-	const mq = window.matchMedia(`(max-width: ${screens.sm})`);
-
-	assignWrapperTopPadding(mq);
-
-	mq.addEventListener("change", () => {
-		assignWrapperTopPadding(mq);
-	});
-</script>
