@@ -16,7 +16,7 @@ const t = useTranslations(lang);
             aria-label="Open Themes Menu"
             id="toggle-theme-button"
             data-dropdown-toggle="themes-menu"
-            class="inline-flex w-max rounded-md bg-slate-400/30 px-4 py-3 align-baseline font-bold uppercase text-inherit shadow-lg backdrop-blur dark:bg-slate-900/90"
+            class="inline-flex w-max rounded-md bg-slate-400/30 px-4 py-3 align-baseline font-bold uppercase text-inherit dark:bg-slate-900/90 sm:bg-transparent dark:sm:bg-transparent"
             type="button"
         >
             <SunIcon width="20" height="20" id="light" data-theme-button-icon class="opacity-100" />
@@ -31,7 +31,7 @@ const t = useTranslations(lang);
         </button>
         <div
             id="themes-menu"
-            class="absolute right-0 top-20 hidden w-40 rounded-lg bg-slate-400/30 shadow dark:bg-slate-900"
+            class="absolute right-0 top-20 hidden w-40 rounded-lg bg-slate-400 shadow dark:bg-slate-900"
         >
             <ul
                 class="py-2 text-sm dark:text-gray-200"
@@ -41,7 +41,7 @@ const t = useTranslations(lang);
                     <button
                         data-toggle-theme-button
                         data-theme="light"
-                        class="w-full px-4 py-2 text-right text-lg font-bold hover:bg-gray-100 hover:underline hover:underline-offset-4 hover:decoration-indigo-400 hover:decoration-4 dark:hover:bg-slate-800 dark:hover:decoration-pink-500 dark:hover:decoration-4"
+                        class="w-full px-4 py-2 rounded-t-md text-right text-lg font-bold hover:bg-gray-100 hover:underline hover:underline-offset-4 hover:decoration-indigo-400 hover:decoration-4 dark:hover:bg-slate-800 dark:hover:decoration-pink-500 dark:hover:decoration-4"
                     >
                         {t("theme.light")}
                     </button>
@@ -59,7 +59,7 @@ const t = useTranslations(lang);
                     <button
                         data-toggle-theme-button="system"
                         data-theme="system"
-                        class="w-full items-baseline px-4 py-2 text-right text-lg font-bold hover:bg-gray-100 hover:underline hover:underline-offset-4 hover:decoration-indigo-400 hover:decoration-4 dark:hover:bg-slate-800 dark:hover:text-white dark:hover:decoration-pink-500 dark:hover:decoration-4"
+                        class="w-full items-baseline rounded-b-md px-4 py-2 text-right text-lg font-bold hover:bg-gray-100 hover:underline hover:underline-offset-4 hover:decoration-indigo-400 hover:decoration-4 dark:hover:bg-slate-800 dark:hover:text-white dark:hover:decoration-pink-500 dark:hover:decoration-4"
                     >
                         {t("theme.system")}
                     </button>
