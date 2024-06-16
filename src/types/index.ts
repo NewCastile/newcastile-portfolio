@@ -13,7 +13,7 @@ export interface TechnologyGroupItem {
     icon: {
         src: ImageMetadata;
         size: number;
-        background?: boolean;
+        applyBackground?: boolean
     };
 }
 

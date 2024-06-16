@@ -10,20 +10,20 @@ interface Props {
 const { technology } = Astro.props;
 
 const {
-  icon: { src: TechnologyIcon, size, background },
+  icon: { src: TechnologyIcon, size, applyBackground },
   name,
 } = technology;
 ---
 
 <Badge>
   {
-    background ? (
+    applyBackground ? (
       <div class="relative flex size-4 flex-col items-center justify-center">
         <div
           class:list={[
             "flex flex-col items-center justify-center size-4 absolute z-10 rounded-full",
             {
-              "bg-black": background,
+              "bg-black": applyBackground,
             },
           ]}
           slot={"icon"}

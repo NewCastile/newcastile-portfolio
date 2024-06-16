@@ -152,7 +152,7 @@ export const technologies: Record<string, TechnologyGroupItem> = {
         icon: {
             src: RemixIcon,
             size: 6,
-            background: true,
+            applyBackground: true,
         },
     },
     cypress: { name: "Cypress", icon: { src: CypressIcon, size: 22 } },
